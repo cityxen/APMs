@@ -1,6 +1,6 @@
 # Clicky
 
-Clicky is used in some of our videos. Written in KickAssembler for the Commodore 64.
+Clicky is used in some of our videos. Written in KickAssembler for the Commodore 64. (Graphics and programming by Deadline)
 
 The eyes and tears are sprites.
 
