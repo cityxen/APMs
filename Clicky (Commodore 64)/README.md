@@ -1,7 +1,8 @@
 # Clicky
 
 Clicky is used in some of our videos. Written in KickAssembler for the Commodore 64.
-The eyes are sprites.
+
+The eyes and tears are sprites.
 
 1-0, q-p (Change Eyes)
 
