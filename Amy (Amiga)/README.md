@@ -2,9 +2,9 @@
 
 Amy is written in AMOS Pro 2. (Graphics and programming by Deadline)
 
-Her first appearance was in the Valentine's Day 2020 special on our Youtube channel:
+Appearances:
 
-https://www.youtube.com/watch?v=bCpYkV4iX0c
+https://www.youtube.com/watch?v=bCpYkV4iX0c (Valentine's Day 2020, First Appearance)
 
 1-0, q-p: Change Eyes
 

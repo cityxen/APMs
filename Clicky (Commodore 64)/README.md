@@ -4,6 +4,20 @@ Clicky is used in some of our videos. Written in KickAssembler for the Commodore
 
 The eyes and tears are sprites.
 
+Appearances:
+
+https://www.youtube.com/watch?v=pZl4tio-9Tg (128 Subscribers Thank You!)
+
+https://www.youtube.com/watch?v=O4e05SEDKFQ (Labor Day 2019)
+
+https://www.youtube.com/watch?v=l6i0e3JrV7A (Encrypted Tales, Halloween 2019)
+
+https://www.youtube.com/watch?v=oyNp0grthzk (256 Subscribers Thank You!)
+
+https://www.youtube.com/watch?v=QYXCcNj7qvE (Valentine's Day 2020 Preview)
+
+https://www.youtube.com/watch?v=bCpYkV4iX0c (Valentine's Day 2020)
+
 1-0, q-p: Change Eyes
 
 a-l: Change Mouth
