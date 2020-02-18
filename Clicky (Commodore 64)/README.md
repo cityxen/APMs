@@ -13,6 +13,6 @@ F2 - Toggle Crying
 
 F7 - Change Colors
 
-![Clicky_Crying](https://raw.githubusercontent.com/cityxen/Clicky/master/images/click-cry.png)
-![Encrypted Tales](https://raw.githubusercontent.com/cityxen/Clicky/master/images/clicky-encrypted-tales.png)
-![Pass The Butter](https://raw.githubusercontent.com/cityxen/Clicky/master/images/clicky-pass-the-butter.png)
+![Clicky_Crying](https://raw.githubusercontent.com/cityxen/APMs/master/Clicky%20(Commodore%2064)/images/click-cry.png)
+![Encrypted Tales](https://raw.githubusercontent.com/cityxen/APMs/master/Clicky%20(Commodore%2064)/images/clicky-encrypted-tales.png)
+![Pass The Butter](https://raw.githubusercontent.com/cityxen/APMs/master/Clicky%20(Commodore%2064)/images/clicky-pass-the-butter.png)
