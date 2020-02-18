@@ -28,7 +28,7 @@ Fido (Commodore PET) M
 
 ## Neutral Rarer Appearances (Not Done):
 
-Trish (TRS80 CoCo) F
+Trish (TRS80 CoCo) F (Appearance in Valentine's Day 2020 was post processed manually)
 
 Speckles (Spectrum ZX) F
 
