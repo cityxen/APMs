@@ -2,21 +2,21 @@
 
 APMs:
 
-# Good (Done):
+## Good (Done):
 
 Clicky (Commodore 64) M
 
 Amy (Amiga) F
 
-# Evil (Not Done):
+## Evil (Not Done):
 
 DOSBoss aka Donny (DOS) M
 
 Clone Army (PC Clones) Gender Neutral
 
-## Anything past this line is tentative
+### Anything past this line is tentative
 
-# Good (Not Done):
+## Good (Not Done):
 
 Apollol (Apple IIe) M
 
@@ -26,7 +26,7 @@ Timmy (TI99-4a) M
 
 Fido (Commodore PET) M
 
-# Neutral Rarer Appearances (Not Done):
+## Neutral Rarer Appearances (Not Done):
 
 Trish (TRS80 CoCo) F
 
@@ -42,7 +42,7 @@ Angus (Amstrad CPC 464) M
 
 Terry (Atari ST) M
 
-# Consolas Gang (Not Done):
+## Consolas Gang (Not Done):
 
 Lario (NES) M
 
@@ -58,7 +58,7 @@ Garry (Gameboy) M
 
 Sonny (Sony Playstation) M
 
-# Wise Old Arcade Machines (Not Done):
+## Wise Old Arcade Machines (Not Done):
 
 Patricia (PacMan) F
 
