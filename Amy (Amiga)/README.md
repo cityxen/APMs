@@ -1,6 +1,6 @@
 # Amy
 
-Amy is written in AMOS Pro 2.
+Amy is written in AMOS Pro 2. (Graphics and programming by Deadline)
 
 Her first appearance was in the Valentine's Day 2020 special on our Youtube channel:
 
