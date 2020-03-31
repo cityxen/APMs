@@ -18,6 +18,14 @@ F7: Change Colors
 
 ## Appearances:
 
+https://www.youtube.com/watch?v=Ub17wyUDhP0 (One Year Youtube Anniversary - "The Georgia Fried Electric Sheep")
+
+https://www.youtube.com/watch?v=XpooLqCLl04 (Coming Soon to the Clicky Show)
+
+https://www.youtube.com/watch?v=Ddsb0630ElY (Clicky For President 2020)
+
+https://www.youtube.com/watch?v=Sgl9mTC8xwU (Clicky Home)
+
 https://www.youtube.com/watch?v=bCpYkV4iX0c (Valentine's Day 2020)
 
 https://www.youtube.com/watch?v=QYXCcNj7qvE (Valentine's Day 2020 Preview)
