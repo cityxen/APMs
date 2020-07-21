@@ -22,9 +22,12 @@
 // and he immediately took over the video making awful
 // puns in between 3 stories, Tales from the Encrypt.
 // 
+// July 21, 2020:
+//      - Added Set Expression Sub Routine
+//      - Added Joyport 2 Control of Clicky
 // 
 //////////////////////////////////////////////////////////////////////////////////////
-#import "../Commodore64_Programming/include/Constants.asm"
+#import "../../Commodore64_Programming/include/Constants.asm"
 .segment Sprites [allowOverlap]
 *=$2000 "CLICKY EYES"
 #import "Clicky_Eyes.asm"
@@ -130,213 +133,185 @@ mainloop:
     jsr subroutine_animate
     // Check keyboard
     jsr KERNAL_GETIN
-check_space_hit: // DEFAULT EXPRESSION
-    cmp #$20
-    bne check_q_hit
-    lda #CLICKY_EYES_ZEROIZE
-    sta SPRITE_0_POINTER
-    lda #CLICKY_EYES_ZEROIZE
-    sta SPRITE_1_POINTER
+    clc
+!keycheck: // DEFAULT EXPRESSION
+    cmp #$20 // SPACE
+    bne !keycheck+
+    lda #$01
+    ldx #$01
+    jsr set_expression
     jmp mainloop
-check_q_hit:
-    cmp #$51
-    bne check_w_hit
-    lda #CLICKY_EYES_MAD1_LEFT
-    sta SPRITE_0_POINTER
-    lda #CLICKY_EYES_MAD1_RIGHT
-    sta SPRITE_1_POINTER
+!keycheck:
+    cmp #$51 // Q
+    bne !keycheck+
+    lda #$02
+    ldx #$00
+    jsr set_expression
     jmp mainloop
-check_w_hit:
-    cmp #$57
-    bne check_e_hit
-    lda #CLICKY_EYES_SMUG_LEFT
-    sta SPRITE_0_POINTER
-    lda #CLICKY_EYES_SMUG_RIGHT
-    sta SPRITE_1_POINTER
+!keycheck:
+    cmp #$57 // W
+    bne !keycheck+
+    lda #$03
+    ldx #$00
+    jsr set_expression
     jmp mainloop
-check_e_hit:
-    cmp #$45
-    bne check_r_hit
-    lda #CLICKY_EYES_BLINK
-    sta SPRITE_0_POINTER
-    lda #CLICKY_EYES_BLINK
-    sta SPRITE_1_POINTER
+!keycheck:
+    cmp #$45 // E
+    bne !keycheck+
+    lda #$04
+    ldx #$00
+    jsr set_expression
     jmp mainloop
-check_r_hit:
+!keycheck: // R
     cmp #$52
-    bne check_1_hit
-    lda #CLICKY_EYES_WORRIED_LEFT
-    sta SPRITE_0_POINTER
-    lda #CLICKY_EYES_WORRIED_RIGHT
-    sta SPRITE_1_POINTER
-    jmp mainloop
-check_1_hit:
-    cmp #$31
-    bne check_2_hit
-    lda #CLICKY_EYES_X
-    sta SPRITE_0_POINTER
-    lda #CLICKY_EYES_X
-    sta SPRITE_1_POINTER
-    jmp mainloop
-check_2_hit:
-    cmp #$32
-    bne check_3_hit
-    lda #CLICKY_EYES_MAD2_LEFT
-    sta SPRITE_0_POINTER
-    lda #CLICKY_EYES_MAD2_RIGHT
-    sta SPRITE_1_POINTER
-    jmp mainloop
-check_3_hit:
-    cmp #$33
-    bne check_4_hit
-    lda #CLICKY_EYES_V
-    sta SPRITE_0_POINTER
-    lda #CLICKY_EYES_POWER
-    sta SPRITE_1_POINTER
-    jmp mainloop
-check_4_hit:
-    cmp #$34
-    bne check_5_hit
-    lda #CLICKY_EYES_SAD_LEFT
-    sta SPRITE_0_POINTER
-    lda #CLICKY_EYES_SAD_RIGHT
-    sta SPRITE_1_POINTER
-    jmp mainloop
-check_5_hit:
-    cmp #$35
-    bne check_6_hit
-    lda #CLICKY_EYES_DOWN_RIGHT
-    sta SPRITE_0_POINTER
-    lda #CLICKY_EYES_DOWN_RIGHT
-    sta SPRITE_1_POINTER
-    jmp mainloop
-check_6_hit:
-    cmp #$36
-    bne check_7_hit
-    lda #CLICKY_EYES_UP_LEFT
-    sta SPRITE_0_POINTER
-    lda #CLICKY_EYES_UP_LEFT
-    sta SPRITE_1_POINTER
-    jmp mainloop
-check_7_hit:
-    cmp #$37
-    bne check_8_hit
-    lda #CLICKY_EYES_HEART
-    sta SPRITE_0_POINTER
-    lda #CLICKY_EYES_HEART
-    sta SPRITE_1_POINTER
-    jmp mainloop
-check_8_hit:
-    cmp #$38
-    bne check_9_hit
-    lda #CLICKY_EYES_F_SLASH
-    sta SPRITE_0_POINTER
-    lda #CLICKY_EYES_B_SLASH
-    sta SPRITE_1_POINTER
-    jmp mainloop
-check_9_hit:
-    cmp #$39
-    bne check_0_hit
-    lda #CLICKY_EYES_NOT_SURE
-    sta SPRITE_0_POINTER
-    lda #CLICKY_EYES_NOT_SURE
-    sta SPRITE_1_POINTER
-    jmp mainloop
-check_0_hit:
-check_a_hit: // clear mouth
-    cmp #$41
-    bne check_s_hit
+    bne !keycheck+
+    lda #$05
     ldx #$00
-!mloop:
-    lda #$20
-    sta mouth_local_line,x
-    sta mouth_local_line+40,x
-    sta mouth_local_line+80,x
-    inx
-    cpx #$09
-    bne !mloop-
+    jsr set_expression
     jmp mainloop
-check_s_hit:
-    cmp #$53
-    bne check_d_hit
+!keycheck:
+    cmp #$31 // 1
+    bne !keycheck+
+    lda #$06
     ldx #$00
-!mloop:
-    lda mouth_one,x
-    sta mouth_local_line,x
-    lda mouth_one+9,x
-    sta mouth_local_line+40,x
-    lda mouth_one+18,x
-    sta mouth_local_line+80,x
-    inx
-    cpx #$09
-    bne !mloop-    
+    jsr set_expression
     jmp mainloop
-check_d_hit:
-    cmp #$44
-    bne check_f_hit
+!keycheck:
+    cmp #$32 // 2
+    bne !keycheck+
+    lda #$07
     ldx #$00
-!mloop:
-    lda mouth_two,x
-    sta mouth_local_line,x
-    lda mouth_two+9,x
-    sta mouth_local_line+40,x
-    lda mouth_two+18,x
-    sta mouth_local_line+80,x
-    inx
-    cpx #$09
-    bne !mloop-
+    jsr set_expression
     jmp mainloop
-check_f_hit:
-    cmp #$46
-    bne check_g_hit
+!keycheck:
+    cmp #$33 // 3
+    bne !keycheck+
+    lda #$08
     ldx #$00
-!mloop:    
-    lda mouth_three,x
-    sta mouth_local_line,x
-    lda mouth_three+9,x
-    sta mouth_local_line+40,x
-    lda mouth_three+18,x
-    sta mouth_local_line+80,x
-    inx
-    cpx #$09
-    bne !mloop-
+    jsr set_expression
     jmp mainloop
-check_g_hit:
-    cmp #$47
-    bne check_h_hit
+!keycheck:
+    cmp #$34 // 4
+    bne !keycheck+
+    lda #$09
     ldx #$00
-!mloop:    
-    lda mouth_four,x
-    sta mouth_local_line,x
-    lda mouth_four+9,x
-    sta mouth_local_line+40,x
-    lda mouth_four+18,x
-    sta mouth_local_line+80,x
-    inx
-    cpx #$09
-    bne !mloop-
+    jsr set_expression
     jmp mainloop
-check_h_hit:
-    cmp #$48
-    bne check_j_hit
+!keycheck: 
+    cmp #$35 // 5
+    bne !keycheck+
+    lda #$0A
     ldx #$00
-!mloop:    
-    lda mouth_five,x
-    sta mouth_local_line,x
-    lda mouth_five+9,x
-    sta mouth_local_line+40,x
-    lda mouth_five+18,x
-    sta mouth_local_line+80,x
-    inx
-    cpx #$09
-    bne !mloop-
+    jsr set_expression
     jmp mainloop
-check_j_hit:
+!keycheck:
+    cmp #$36 // 6
+    bne !keycheck+
+    lda #$0B
+    ldx #$00
+    jsr set_expression
+    jmp mainloop
+!keycheck:
+    cmp #$37 // 7
+    bne !keycheck+
+    lda #$0C
+    ldx #$00
+    jsr set_expression
+    jmp mainloop
+!keycheck:
+    cmp #$38 // 8
+    bne !keycheck+
+    lda #$0D
+    ldx #$00
+    jsr set_expression
+    jmp mainloop
+!keycheck:
+    cmp #$39 // 9
+    bne !keycheck+
+    lda #$0E
+    ldx #$00
+    jsr set_expression
+    jmp mainloop
+
+// MOUTH KEYS
+!keycheck: // clear mouth
+    cmp #$41 // A
+    bne !keycheck+
+    lda #$00
+    ldx #$01
+    jsr set_expression
+    jmp mainloop
+
+!keycheck:
+    cmp #$53 // S
+    bne !keycheck+
+    lda #$00
+    ldx #$02
+    jsr set_expression
+    jmp mainloop
+
+!keycheck:
+    cmp #$44 // D
+    bne !keycheck+
+    lda #$00
+    ldx #$03
+    jsr set_expression
+    jmp mainloop
+
+!keycheck:
+    cmp #$46 // F
+    bne !keycheck+
+    lda #$00
+    ldx #$04
+    jsr set_expression
+    jmp mainloop
+
+!keycheck:
+    cmp #$47 // G
+    bne !keycheck+
+    lda #$00
+    ldx #$05
+    jsr set_expression
+    jmp mainloop
+
+!keycheck:
+    cmp #$48 // H
+    bne !keycheck+
+    lda #$00
+    ldx #$06
+    jsr set_expression
+    jmp mainloop
+
+!keycheck:
+    cmp #$4A // J
+    bne !keycheck+
+    lda #$00
+    ldx #$07
+    jsr set_expression
+    jmp mainloop
+
+!keycheck:
+    cmp #$4B // K
+    bne !keycheck+
+    lda #$00
+    ldx #$08
+    jsr set_expression
+    jmp mainloop
+
+!keycheck:
+    cmp #$4C // L
+    bne !keycheck+
+    lda #$00
+    ldx #$09
+    jsr set_expression
+    jmp mainloop
+
 //////////////////////////////////////////////////
 // F1 (toggle frankenstein type scar on Clicky's face)
-check_f1_hit:
-    cmp #$85
-    bne check_f2_hit
+
+!keycheck:
+    cmp #$85 // F1
+    bne !keycheck+
     lda halloween_scar_status
     beq scar_turn_on
 scar_turn_off: // turn scar off
@@ -373,9 +348,9 @@ scarloop1:
     jmp mainloop
 //////////////////////////////////////////////////
 // F2 Toggle Cry mode
-check_f2_hit:
-    cmp #$89
-    bne check_f3_hit
+!keycheck:
+    cmp #$89 // F2
+    bne !keycheck+
     lda valentine_cry_status
     beq cry_turn_on
 cry_turn_off:
@@ -389,33 +364,33 @@ cry_turn_on:
     jmp mainloop
 //////////////////////////////////////////////////
 // F3
-check_f3_hit:
-    cmp #$86
-    bne check_f4_hit
+!keycheck:
+    cmp #$86 // F3
+    bne !keycheck+
     jmp mainloop
 //////////////////////////////////////////////////
 // F4
-check_f4_hit:
+!keycheck:
     cmp #$8a
-    bne check_f5_hit
+    bne !keycheck+
     jmp mainloop
 //////////////////////////////////////////////////
 // F5
-check_f5_hit:
-    cmp #$87
-    bne check_f6_hit
+!keycheck:
+    cmp #$87 // F5
+    bne !keycheck+
     jmp mainloop
 //////////////////////////////////////////////////
 // F6
-check_f6_hit:
-    cmp #$8b
-    bne check_f7_hit
+!keycheck:
+    cmp #$8b // F6
+    bne !keycheck+
     jmp mainloop
 //////////////////////////////////////////////////
 // F7 Increment color being used
-check_f7_hit:
-    cmp #$88
-    bne check_f8_hit
+!keycheck:
+    cmp #$88 // F7
+    bne !keycheck+
     inc color_table_offset
     // cursor color
     ldx color_table_offset
@@ -447,11 +422,137 @@ f7_chg_colors_loop_1:
     jmp mainloop
 //////////////////////////////////////////////////
 // F8
-check_f8_hit:
-    cmp #$89
-    bne end_keyboard_checks
+!keycheck:
+    cmp #$89 // F8
+    bne !keycheck+
     jmp mainloop
-end_keyboard_checks:
+
+!keycheck: // end_keyboard_checks
+
+// Joystick port 2 control of Clicky
+    lda 56320
+// Middle, no move 127
+// UP
+    cmp #126
+    bne !joy2check+
+    lda #$05 // WORRIED EYES
+    ldx #$04 // SURPRISED MOUTH
+    jsr set_expression
+
+!joy2check:
+// DOWN
+    cmp #125
+    bne !joy2check+
+    lda #$02 // MAD EYES
+    ldx #$02 // LINE MOUTH
+    jsr set_expression
+
+!joy2check:
+// LEFT
+    cmp #123
+    bne !joy2check+
+    lda #$0E // CHEEKY EYES
+    ldx #$03 // SMILE
+    jsr set_expression
+
+!joy2check:
+// RIGHT
+    cmp #119
+    bne !joy2check+
+    lda #$0A
+    ldx #$02
+    jsr set_expression
+
+!joy2check:
+//  UP+LEFT
+    cmp #122
+    bne !joy2check+
+    lda #$09
+    ldx #$03
+    jsr set_expression
+
+!joy2check:
+// UP+RIGHT
+    cmp #118
+    bne !joy2check+
+    lda #$0B
+    ldx #$02
+    jsr set_expression
+
+!joy2check:
+// DOWN+LEFT
+    cmp #121
+    bne !joy2check+
+
+!joy2check:
+// DOWN+RIGHT
+    cmp #117
+    bne !joy2check+
+
+// Middle, no move+FIRE 111
+    cmp #111
+    bne !joy2check+
+
+!joy2check:
+// UP+FIRE
+    cmp #110
+    bne !joy2check+
+    lda #$00
+    ldx #$03
+    jsr set_expression
+
+!joy2check:
+// DOWN+FIRE
+    cmp #109
+    bne !joy2check+
+    lda #$00
+    ldx #$04
+    jsr set_expression
+
+!joy2check:
+// LEFT+FIRE
+    cmp #107
+    bne !joy2check+
+    lda #$00
+    ldx #$05
+    jsr set_expression
+
+!joy2check:
+// RIGHT+FIRE
+    cmp #103
+    bne !joy2check+
+    lda #$00
+    ldx #$06
+    jsr set_expression
+
+!joy2check:
+//  UP+LEFT+FIRE
+    cmp #106
+    bne !joy2check+
+    lda #$00
+    ldx #$02
+    jsr set_expression
+
+!joy2check:
+// UP+RIGHT+FIRE
+    cmp #102
+    bne !joy2check+
+
+!joy2check:
+// DOWN+LEFT+FIRE
+    cmp #105
+    bne !joy2check+
+
+!joy2check:
+// DOWN+RIGHT+FIRE
+    cmp #101
+    bne joy2check_end
+    lda #$00
+    ldx #$07
+    jsr set_expression
+
+joy2check_end:
+
     jmp mainloop
 // END MAINLOOP
 //////////////////////////////////////////////////
@@ -459,7 +560,6 @@ end_keyboard_checks:
 //////////////////////////////////////////////////
 // ANIMATE SUBROUTINE
 subroutine_animate: // Animations subroutine
-
 
     // do crying
     lda valentine_cry_status
@@ -505,11 +605,216 @@ tear_two:
     cpx #80
     bcs end_glitch
     sta $400,x
-    sta $710,x
+    sta $0710,x
 end_glitch:
     rts
 // END ANIMATE
 //////////////////////////////////////////////////
+
+//////////////////////////////////////////////////
+// SET EXPRESSION SUBROUTINE
+// A = which eyes (0 will ignore redraw of eyes)
+// X = which mouth (0 will ignore redraw of mouth)
+set_expression:
+    clc
+    cmp #$00
+    bne !set_expression_next+
+    jmp set_exp_mouth
+!set_expression_next:
+    cmp #$01 // eyes $01
+    bne !set_expression_next+
+    lda #CLICKY_EYES_ZEROIZE
+    sta SPRITE_0_POINTER
+    lda #CLICKY_EYES_ZEROIZE
+    sta SPRITE_1_POINTER
+    jmp set_exp_mouth
+!set_expression_next:
+    cmp #$02 // eyes $02
+    bne !set_expression_next+
+    lda #CLICKY_EYES_MAD1_LEFT
+    sta SPRITE_0_POINTER
+    lda #CLICKY_EYES_MAD1_RIGHT
+    sta SPRITE_1_POINTER
+    jmp set_exp_mouth
+!set_expression_next:
+    cmp #$03 // eyes $03
+    bne !set_expression_next+
+    lda #CLICKY_EYES_SMUG_LEFT
+    sta SPRITE_0_POINTER
+    lda #CLICKY_EYES_SMUG_RIGHT
+    sta SPRITE_1_POINTER
+    jmp set_exp_mouth
+!set_expression_next:
+    cmp #$04 // eyes $04
+    bne !set_expression_next+
+    lda #CLICKY_EYES_BLINK
+    sta SPRITE_0_POINTER
+    lda #CLICKY_EYES_BLINK
+    sta SPRITE_1_POINTER
+    jmp set_exp_mouth
+!set_expression_next:
+    cmp #$05 // eyes $05
+    bne !set_expression_next+
+    lda #CLICKY_EYES_WORRIED_LEFT
+    sta SPRITE_0_POINTER
+    lda #CLICKY_EYES_WORRIED_RIGHT
+    sta SPRITE_1_POINTER
+    jmp set_exp_mouth
+!set_expression_next:
+    cmp #$06 // eyes $06
+    bne !set_expression_next+
+    lda #CLICKY_EYES_X
+    sta SPRITE_0_POINTER
+    lda #CLICKY_EYES_X
+    sta SPRITE_1_POINTER
+    jmp set_exp_mouth
+!set_expression_next:
+    cmp #$07 // eyes $07
+    bne !set_expression_next+
+    lda #CLICKY_EYES_MAD2_LEFT
+    sta SPRITE_0_POINTER
+    lda #CLICKY_EYES_MAD2_RIGHT
+    sta SPRITE_1_POINTER
+    jmp set_exp_mouth
+!set_expression_next:
+    cmp #$08 // eyes $08
+    bne !set_expression_next+
+    lda #CLICKY_EYES_V
+    sta SPRITE_0_POINTER
+    lda #CLICKY_EYES_POWER
+    sta SPRITE_1_POINTER
+    jmp set_exp_mouth
+!set_expression_next:
+    cmp #$09 // eyes $09
+    bne !set_expression_next+
+    lda #CLICKY_EYES_SAD_LEFT
+    sta SPRITE_0_POINTER
+    lda #CLICKY_EYES_SAD_RIGHT
+    sta SPRITE_1_POINTER
+    jmp set_exp_mouth
+!set_expression_next:
+    cmp #$0A // eyes $0A
+    bne !set_expression_next+
+    lda #CLICKY_EYES_DOWN_RIGHT
+    sta SPRITE_0_POINTER
+    lda #CLICKY_EYES_DOWN_RIGHT
+    sta SPRITE_1_POINTER
+    jmp set_exp_mouth
+!set_expression_next:
+    cmp #$0B // eyes $0B
+    bne !set_expression_next+
+    lda #CLICKY_EYES_UP_LEFT
+    sta SPRITE_0_POINTER
+    lda #CLICKY_EYES_UP_LEFT
+    sta SPRITE_1_POINTER
+    jmp set_exp_mouth
+!set_expression_next:
+    cmp #$0C // eyes $0C
+    bne !set_expression_next+
+    lda #CLICKY_EYES_HEART
+    sta SPRITE_0_POINTER
+    lda #CLICKY_EYES_HEART
+    sta SPRITE_1_POINTER
+    jmp set_exp_mouth
+!set_expression_next:
+    cmp #$0D // eyes $0D
+    bne !set_expression_next+
+    lda #CLICKY_EYES_F_SLASH
+    sta SPRITE_0_POINTER
+    lda #CLICKY_EYES_B_SLASH
+    sta SPRITE_1_POINTER
+    jmp set_exp_mouth
+!set_expression_next:
+    cmp #$0E // eyes $0E
+    bne !set_expression_next+
+    lda #CLICKY_EYES_NOT_SURE
+    sta SPRITE_0_POINTER
+    lda #CLICKY_EYES_NOT_SURE
+    sta SPRITE_1_POINTER
+    jmp set_exp_mouth
+
+set_exp_mouth:
+    txa
+    cmp #$00
+    bne !set_expression_next+
+    jmp end_set_expression
+
+!set_expression_next:
+    cmp #$01 // mouth clear
+    bne !set_expression_next+
+    DrawMouth(mouth_clear)
+    jmp end_set_expression
+
+!set_expression_next:
+    cmp #$02 // mouth 2
+    bne !set_expression_next+
+    DrawMouth(mouth_one)
+    jmp end_set_expression
+
+!set_expression_next:
+    cmp #$03 // mouth 3
+    bne !set_expression_next+
+    DrawMouth(mouth_two)
+    jmp end_set_expression
+
+!set_expression_next:
+    cmp #$04 // mouth 4
+    bne !set_expression_next+
+    DrawMouth(mouth_three)
+    jmp end_set_expression
+
+!set_expression_next:
+    cmp #$05 // mouth 5
+    bne !set_expression_next+
+    DrawMouth(mouth_four)
+    jmp end_set_expression
+
+!set_expression_next:
+    cmp #$06 // mouth 6
+    bne !set_expression_next+
+    DrawMouth(mouth_five)
+    jmp end_set_expression
+
+!set_expression_next:
+    cmp #$07 // mouth 7
+    bne !set_expression_next+
+    DrawMouth(mouth_small_line)
+    jmp end_set_expression
+
+!set_expression_next:
+    cmp #$08 // mouth 8
+    bne !set_expression_next+
+    DrawMouth(mouth_smile)
+    jmp end_set_expression
+
+!set_expression_next:
+    cmp #$09 // mouth 9
+    bne !set_expression_next+
+    DrawMouth(mouth_frown)
+    jmp end_set_expression
+
+
+
+!set_expression_next:
+end_set_expression:
+    rts
+// END SET EXPRESSION SUBROUTINE
+//////////////////////////////////////////////////
+
+.macro DrawMouth(whichmouth) {
+    ldx #$00
+!mloop:
+    lda whichmouth,x
+    sta mouth_local_line,x
+    lda whichmouth+9,x
+    sta mouth_local_line+40,x
+    lda whichmouth+18,x
+    sta mouth_local_line+80,x
+    inx
+    cpx #$09
+    bne !mloop-
+}
+
 
 //////////////////////////////////////////////////
 // TABLES
@@ -538,6 +843,11 @@ sprite_multicolor_1_table:
 .byte CYAN
 .byte LIGHT_GRAY
 
+mouth_clear:
+.byte $20,$20,$20,$20,$20,$20,$20,$20,$20
+.byte $20,$20,$20,$20,$20,$20,$20,$20,$20
+.byte $20,$20,$20,$20,$20,$20,$20,$20,$20
+
 mouth_one:
 .byte $20,$20,$20,$20,$20,$20,$20,$20,$20
 .byte $20,$20,$40,$40,$40,$40,$40,$20,$20
@@ -562,6 +872,22 @@ mouth_five:
 .byte $20,$20,$20,$20,$20,$20,$20,$20,$20
 .byte $20,$20,$28,$55,$43,$49,$29,$20,$20
 .byte $20,$20,$20,$4a,$43,$4b,$20,$20,$20
+
+mouth_small_line:
+.byte $20,$20,$20,$20,$20,$20,$20,$20,$20
+.byte $20,$20,$20,$40,$40,$40,$20,$20,$20
+.byte $20,$20,$20,$20,$20,$20,$20,$20,$20
+
+mouth_smile:
+.byte $20,$70,$F8,$F8,$F8,$F8,$F8,$6E,$20
+.byte $20,$42,$EA,$EA,$EA,$EA,$A0,$42,$20
+.byte $20,$4a,$46,$46,$46,$46,$46,$4b,$20
+
+mouth_frown:
+.byte $20,$E9,$A0,$A0,$A0,$A0,$A0,$DF,$20
+.byte $20,$A0,$69,$20,$20,$20,$5F,$A0,$20
+.byte $20,$A0,$20,$20,$20,$20,$20,$A0,$20
+
 
 // Decorations
 halloween_scar_status:

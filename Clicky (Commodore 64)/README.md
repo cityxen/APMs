@@ -16,6 +16,22 @@ F2: Toggle Crying
 
 F7: Change Colors
 
+### JOYSTICK IN PORT 2: 
+
+UP: WORRIED/SURPRISED
+
+DOWN: ANGRY
+
+LEFT: CHEEKY
+
+RIGHT: NORMAL LOOK
+
+UP+RIGHT: NORMAL LOOK (CHANGE EYE DIRECTION)
+
+UP+LEFT: SMILING
+
+FIRE+DIRECTION: Changes mouth
+
 ## Appearances:
 
 https://www.youtube.com/watch?v=Ub17wyUDhP0 (One Year Youtube Anniversary - "The Georgia Fried Electric Sheep")
