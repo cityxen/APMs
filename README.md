@@ -28,6 +28,10 @@ Fido (Commodore PET) M
 
 ## Neutral Rarer Appearances (Not Done):
 
+PET (Commodore PET) Will appear as Kitteh or Doggo
+
+Teddy (Commodore +4/16) M
+
 Trish (TRS80 CoCo) F (Appearance in Valentine's Day 2020 was post processed manually)
 
 Speckles (Spectrum ZX) F
