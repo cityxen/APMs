@@ -24,11 +24,9 @@ Pokey (Atari 800) M
 
 Timmy (TI99-4a) M
 
-Fido (Commodore PET) M
-
 ## Neutral Rarer Appearances (Not Done):
 
-PET (Commodore PET) Will appear as Kitteh or Doggo
+Kitteh (or Fido) (Commodore PET)
 
 Teddy (Commodore +4/16) M
 
