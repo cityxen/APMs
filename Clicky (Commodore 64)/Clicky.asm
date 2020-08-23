@@ -30,7 +30,11 @@
 #import "../../Commodore64_Programming/include/Constants.asm"
 .segment Sprites [allowOverlap]
 *=$2000 "CLICKY EYES"
-#import "Clicky_Eyes.asm"
+#import "Clicky_Eyes_Defs.asm"
+#import "Clicky_Eyes_Data.asm"
+*=$3000 "CLICKY MOUTHS"
+#import "Clicky_Mouths_Data.asm"
+#import "Clicky_Decorations_Data.asm"
 //////////////////////////////////////////////////////////////////////////////////////
 // File stuff
 .file [name="prg_files/clicky.prg", segments="Main,Sprites"]
@@ -169,6 +173,13 @@ mainloop:
     ldx #$00
     jsr set_expression
     jmp mainloop
+!keycheck: // T
+    cmp #$54
+    bne !keycheck+
+    lda #$0F
+    ldx #$00
+    jsr set_expression
+    jmp mainloop
 !keycheck:
     cmp #$31 // 1
     bne !keycheck+
@@ -302,7 +313,7 @@ mainloop:
     cmp #$4C // L
     bne !keycheck+
     lda #$00
-    ldx #$09
+    ldx #$0a
     jsr set_expression
     jmp mainloop
 
@@ -732,6 +743,16 @@ set_expression:
     lda #CLICKY_EYES_NOT_SURE
     sta SPRITE_1_POINTER
     jmp set_exp_mouth
+!set_expression_next:
+    cmp #$0F // eyes $0F
+    bne !set_expression_next+
+    lda #CLICKY_EYES_SKULL_LEFT
+    sta SPRITE_0_POINTER
+    lda #CLICKY_EYES_SKULL_RIGHT
+    sta SPRITE_1_POINTER
+    jmp set_exp_mouth    
+
+
 
 set_exp_mouth:
     txa
@@ -793,6 +814,12 @@ set_exp_mouth:
     DrawMouth(mouth_frown)
     jmp end_set_expression
 
+!set_expression_next:
+    cmp #$0a // mouth a
+    bne !set_expression_next+
+    DrawMouth(mouth_skeleton)
+    jmp end_set_expression
+
 
 
 !set_expression_next:
@@ -814,95 +841,4 @@ end_set_expression:
     cpx #$09
     bne !mloop-
 }
-
-
-//////////////////////////////////////////////////
-// TABLES
-color_table_offset:
-.byte 0
-characters_color_table:
-.byte GREEN
-.byte RED
-.byte BLUE
-.byte YELLOW
-.byte PURPLE
-.byte GRAY
-.byte $ff
-sprite_multicolor_0_table:
-.byte GREEN
-.byte RED
-.byte BLUE
-.byte YELLOW
-.byte PURPLE
-.byte GRAY
-sprite_multicolor_1_table:
-.byte LIGHT_GREEN
-.byte LIGHT_RED
-.byte LIGHT_BLUE
-.byte ORANGE
-.byte CYAN
-.byte LIGHT_GRAY
-
-mouth_clear:
-.byte $20,$20,$20,$20,$20,$20,$20,$20,$20
-.byte $20,$20,$20,$20,$20,$20,$20,$20,$20
-.byte $20,$20,$20,$20,$20,$20,$20,$20,$20
-
-mouth_one:
-.byte $20,$20,$20,$20,$20,$20,$20,$20,$20
-.byte $20,$20,$40,$40,$40,$40,$40,$20,$20
-.byte $20,$20,$20,$20,$20,$20,$20,$20,$20
-
-mouth_two:
-.byte $20,$49,$20,$20,$20,$20,$20,$55,$20
-.byte $20,$4a,$40,$40,$40,$40,$40,$4b,$20
-.byte $20,$20,$20,$20,$20,$20,$20,$20,$20
-
-mouth_three:
-.byte $20,$20,$55,$44,$44,$44,$49,$20,$20
-.byte $20,$20,$42,$20,$20,$20,$42,$20,$20
-.byte $20,$20,$6d,$44,$44,$44,$7d,$20,$20
-
-mouth_four:
-.byte $20,$20,$55,$43,$43,$43,$49,$20,$20
-.byte $20,$3c,$73,$20,$20,$20,$6b,$3e,$20
-.byte $20,$20,$4a,$43,$43,$43,$4b,$20,$20
-
-mouth_five:
-.byte $20,$20,$20,$20,$20,$20,$20,$20,$20
-.byte $20,$20,$28,$55,$43,$49,$29,$20,$20
-.byte $20,$20,$20,$4a,$43,$4b,$20,$20,$20
-
-mouth_small_line:
-.byte $20,$20,$20,$20,$20,$20,$20,$20,$20
-.byte $20,$20,$20,$40,$40,$40,$20,$20,$20
-.byte $20,$20,$20,$20,$20,$20,$20,$20,$20
-
-mouth_smile:
-.byte $20,$70,$F8,$F8,$F8,$F8,$F8,$6E,$20
-.byte $20,$42,$EA,$EA,$EA,$EA,$A0,$42,$20
-.byte $20,$4a,$46,$46,$46,$46,$46,$4b,$20
-
-mouth_frown:
-.byte $20,$E9,$A0,$A0,$A0,$A0,$A0,$DF,$20
-.byte $20,$A0,$69,$20,$20,$20,$5F,$A0,$20
-.byte $20,$A0,$20,$20,$20,$20,$20,$A0,$20
-
-
-// Decorations
-halloween_scar_status:
-.byte 0
-halloween_scar:
-.byte $20,$20,$20,$4d,$4e,$20,$20,$20,$20
-.byte $20,$20,$4d,$4e,$4d,$20,$20,$20,$20
-.byte $20,$4d,$4e,$4d,$20,$20,$20,$20,$20
-.byte $20,$4e,$4d,$20,$20,$20,$20,$20,$20
-halloween_scar_clear:
-.byte $20,$20,$20,$20,$20,$20,$20,$20,$20
-.byte $20,$20,$20,$20,$20,$20,$20,$20,$20
-.byte $20,$20,$20,$20,$20,$20,$20,$20,$20
-.byte $20,$20,$20,$20,$20,$20,$20,$20,$20
-
-valentine_cry_status:
-.byte 0,0,0,0,0
 
