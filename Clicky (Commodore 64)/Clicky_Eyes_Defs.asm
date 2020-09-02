@@ -26,4 +26,8 @@
 .const CLICKY_EYES_TEAR       = $99
 .const CLICKY_EYES_SKULL_LEFT = $9a
 .const CLICKY_EYES_SKULL_RIGHT= $9b
+.const CLICKY_EYES_SKUL2_LEFT = $9c
+.const CLICKY_EYES_SKUL2_RIGHT= $9d
+.const CLICKY_ZZ_1            = $9e
+.const CLICKY_ZZ_2            = $9f
 

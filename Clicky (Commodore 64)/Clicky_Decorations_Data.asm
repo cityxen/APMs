@@ -42,3 +42,11 @@ halloween_scar_clear:
 valentine_cry_status:
 .byte 0,0,0,0,0
 
+sleep_mode_status:
+.byte 0
+sleep_mode_anim_frame:
+.byte 0
+sleep_mode_anim_timer:
+.byte 0,0
+
+

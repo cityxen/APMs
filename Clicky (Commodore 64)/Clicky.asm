@@ -2,29 +2,32 @@
 // Clicky by Deadline
 //////////////////////////////////////////////////////////////////////////////////////
 //
-// Clicky is the CityXen Youtube channel mascot
-// He can be seen throughout our various videos often
-// popping in unannounced, where he offers unsolicited
-// advice or comments.
+// Clicky is the CityXen Youtube channel mascot. He can be seen throughout our various
+//      videos often popping in unannounced, where he offers unsolicited advice or comments.
 // 
-// Valentine's Day 2020:
-// Added Tears Decoration
+//////////////////////////////////////////////////////////////////////////////////////
 // 
-// Halloween 2019:
-// Added Scar Decoration
-// During the Halloween 2019 special, Clicky died and was 
-// put to rest at the CityXen Memorial Gardens in 
-// Douglasville, Ga.
-// The special saw him being dug up out of his grave,
-// and reassembled with parts from other Commodore 64's
-// in the CityXen laboratory.
-// He was brought back to life October 18th, 2019
-// and he immediately took over the video making awful
-// puns in between 3 stories, Tales from the Encrypt.
+// History:
 // 
+// August 30, 2020:
+//      - Added Zz and zZ sprites to add for "Sleep Mode"
+//      - Added "Sleep  Mode", Clicky's Eyes and Mouth change to lines - -, --- , and Animated Zz zZ sprites decoration
+//
 // July 21, 2020:
 //      - Added Set Expression Sub Routine
 //      - Added Joyport 2 Control of Clicky
+// 
+// Valentine's Day 2020:
+//      - Added Tears Decoration
+// 
+// Halloween 2019:
+//      - Added Scar Decoration
+//      - During the Halloween 2019 special, Clicky died and was put to rest at the CityXen Memorial Gardens in 
+//         Douglasville, Ga. The special saw him being dug up out of his grave,
+//         and reassembled with parts from other Commodore 64's
+//         in the CityXen laboratory. He was brought back to life October 18th, 2019
+//         and he immediately took over the video making awful puns in between 2 stories in
+//         Encrypted Tales I
 // 
 //////////////////////////////////////////////////////////////////////////////////////
 #import "../../Commodore64_Programming/include/Constants.asm"
@@ -65,14 +68,16 @@ program:
 
     // SET DEFAULT POSITION ON SCREEN
     lda #$85
-    sta SPRITE_0_X
+    sta SPRITE_0_X  // Eye Left
     sta SPRITE_2_X  // Tear 1
     lda #$ca
-    sta SPRITE_1_X
+    sta SPRITE_1_X  // Eye Right
     sta SPRITE_3_X  // Tear 2
+    lda #$d0
+    sta SPRITE_4_X // Sleep Sprite 1
+    lda #$e7
+    sta SPRITE_5_X // Sleep Sprite 2
     lda #$00
-    sta SPRITE_4_X
-    sta SPRITE_5_X
     sta SPRITE_6_X
     sta SPRITE_7_X
     lda #$60
@@ -82,15 +87,25 @@ program:
     lda #$00
     sta SPRITE_2_Y  // Tear
     sta SPRITE_3_Y
-    sta SPRITE_4_Y
-    sta SPRITE_5_Y
+
+    lda #$80
+    sta SPRITE_4_Y  // Sleep Sprite 1
+    lda #$88
+    sta SPRITE_5_Y  // Sleep Sprite 2
+
+    lda #$00
     sta SPRITE_6_Y
     sta SPRITE_7_Y
-    lda #$ff
+
+    // Set initial sprites on or off
+    lda #%00001111
     sta SPRITE_ENABLE
+
+    // Set initial sprites multicolor 
+    lda #$FF
     sta SPRITE_MULTICOLOR
 
-    // sprite colors
+    // Set initial sprite colors
     ldx color_table_offset
     lda sprite_multicolor_0_table,x
     sta SPRITE_MULTICOLOR_0
@@ -106,6 +121,7 @@ program:
     sta SPRITE_6_COLOR
     sta SPRITE_7_COLOR
 
+    // Set initial sprite pointers
     lda #CLICKY_EYES_SOLID
     sta SPRITE_0_POINTER // eye left
     lda #CLICKY_EYES_DOWN_RIGHT
@@ -114,25 +130,29 @@ program:
     sta SPRITE_2_POINTER // tear left
     lda #CLICKY_EYES_TEAR
     sta SPRITE_3_POINTER // tear right
-    lda #$00
-    sta SPRITE_4_POINTER // future
-    lda #$00
-    sta SPRITE_5_POINTER // future
+    lda #CLICKY_ZZ_1
+    sta SPRITE_4_POINTER // Zz
+    lda #CLICKY_ZZ_1
+    sta SPRITE_5_POINTER // zZ
     lda #$00
     sta SPRITE_6_POINTER // future
     lda #$00
     sta SPRITE_7_POINTER // future
 
-    // set up sid to produce random values
+    // Set up sid to produce random values
     lda #$FF  // maximum frequency value
     sta $D40E // voice 3 frequency low byte
     sta $D40F // voice 3 frequency high byte
     lda #$80  // noise waveform, gate bit off
     sta $D412 // voice 3 control register
 
+    // Turn off sleep mode
+    lda #$00
+    sta sleep_mode_status
+
 //////////////////////////////////////////////////
 // MAINLOOP
-mainloop:    
+mainloop:
     // animate stuff
     jsr subroutine_animate
     // Check keyboard
@@ -371,13 +391,38 @@ cry_turn_off:
 cry_turn_on:
     inc valentine_cry_status
     lda #$68
-    sta SPRITE_2_Y    
+    sta SPRITE_2_Y
     jmp mainloop
 //////////////////////////////////////////////////
-// F3
+// F3 Toggle Sleep mode
 !keycheck:
     cmp #$86 // F3
     bne !keycheck+
+    lda sleep_mode_status
+    beq sleep_mode_turn_on
+sleep_mode_turn_off:
+    lda #$00
+    sta sleep_mode_status
+    lda #%11001111
+    and SPRITE_ENABLE
+    sta SPRITE_ENABLE
+    jmp mainloop
+sleep_mode_turn_on:
+    inc sleep_mode_status
+    lda #%00110000
+    ora SPRITE_ENABLE
+    sta SPRITE_ENABLE
+    lda #$d0
+    sta SPRITE_4_X
+    lda #$e7
+    sta SPRITE_5_X
+    lda #$80
+    sta SPRITE_4_Y
+    lda #$88
+    sta SPRITE_5_Y
+    lda #$04
+    ldx #$07
+    jsr set_expression
     jmp mainloop
 //////////////////////////////////////////////////
 // F4
@@ -430,6 +475,10 @@ f7_chg_colors_loop_1:
     sta SPRITE_1_COLOR
     sta SPRITE_2_COLOR
     sta SPRITE_3_COLOR
+    sta SPRITE_4_COLOR
+    sta SPRITE_5_COLOR
+    sta SPRITE_6_COLOR
+    sta SPRITE_7_COLOR
     jmp mainloop
 //////////////////////////////////////////////////
 // F8
@@ -609,6 +658,62 @@ tear_two:
     lda #$68
     sta SPRITE_2_Y
 
+!animate: // update sleep mode
+    lda sleep_mode_status
+    beq end_sleep_mode
+    inc sleep_mode_anim_timer
+    lda sleep_mode_anim_timer
+    cmp #$10
+    bne !animate+
+    lda #$00
+    sta sleep_mode_anim_timer
+    inc sleep_mode_anim_timer+1
+    lda sleep_mode_anim_timer+1
+    bne !animate+
+    lda #$00
+    sta sleep_mode_anim_timer+1
+    
+    inc sleep_mode_anim_frame
+    clc
+    lda sleep_mode_anim_frame
+    and #$01
+    beq snooze_1
+    // draw (o) mouth, and move sprites to upper location
+    lda #$00
+    ldx #$06
+    jsr set_expression
+    lda #$e5
+    sta SPRITE_4_X
+    lda #$fc
+    sta SPRITE_5_X
+    lda #$70
+    sta SPRITE_4_Y
+    lda #$78
+    sta SPRITE_5_Y
+    lda #CLICKY_ZZ_2
+    sta SPRITE_4_POINTER
+    sta SPRITE_5_POINTER
+    jmp !animate+
+snooze_1:
+    // draw - mouth, and move sprites to lower location
+    lda #$00
+    ldx #$07
+    jsr set_expression
+    lda #$d0
+    sta SPRITE_4_X
+    lda #$e7
+    sta SPRITE_5_X
+    lda #$80
+    sta SPRITE_4_Y
+    lda #$88
+    sta SPRITE_5_Y
+    lda #CLICKY_ZZ_1
+    sta SPRITE_4_POINTER
+    sta SPRITE_5_POINTER
+    jmp !animate+
+
+end_sleep_mode:
+
 !animate:
     // do some glitchy looking stuff
     lda $d41b
@@ -751,8 +856,6 @@ set_expression:
     lda #CLICKY_EYES_SKULL_RIGHT
     sta SPRITE_1_POINTER
     jmp set_exp_mouth    
-
-
 
 set_exp_mouth:
     txa
