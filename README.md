@@ -8,6 +8,10 @@ Clicky (Commodore 64) M
 
 Amy (Amiga) F
 
+Pokey (Atari 800) M (WIP)
+
+Fido (Commodore PET) (WIP)
+
 ## Evil (Not Done):
 
 DOSBoss aka Donny (DOS) M
@@ -20,13 +24,9 @@ Clone Army (PC Clones) Gender Neutral
 
 Apollol (Apple IIe) M
 
-Pokey (Atari 800) M
-
 Timmy (TI99-4a) M
 
 ## Neutral Rarer Appearances (Not Done):
-
-Kitteh (or Fido) (Commodore PET)
 
 Teddy (Commodore +4/16) M
 
