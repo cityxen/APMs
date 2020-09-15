@@ -14,7 +14,7 @@ Fido (Commodore PET) (WIP)
 
 ## Evil (Not Done):
 
-DOSBoss aka Donny (DOS) M
+Ms DOS (DOS) F
 
 Clone Army (PC Clones) Gender Neutral
 
