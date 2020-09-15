@@ -40,8 +40,8 @@
 #import "Clicky_Decorations_Data.asm"
 //////////////////////////////////////////////////////////////////////////////////////
 // File stuff
-.file [name="prg_files/clicky.prg", segments="Main,Sprites"]
-.disk [filename="prg_files/clicky.d64", name="CITYXEN CLICKY", id="2020!" ] {
+.file [name="clicky.prg", segments="Main,Sprites"]
+.disk [filename="clicky.d64", name="CITYXEN CLICKY", id="2020!" ] {
 	[name="CLICKY", type="prg",  segments="Main,Sprites"],
 }
 //////////////////////////////////////////////////////////////////////////////////////
