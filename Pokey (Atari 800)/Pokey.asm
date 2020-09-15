@@ -14,60 +14,48 @@
 ;//////////////////////////////////////////////////////////////////////////////////////
 
 screenmem  = 40000
-mouthstart = screenmem+645
-gogglesmem = screenmem+208
+gogglesmem = screenmem+211
+mouthstart = screenmem+536
 
  	org $2000	;Start of code block
 
 start	
+	lda #$01
+	sta $2f0 ; turn off cursor
+	lda #$00
+	sta screenmem+2
 
 	jsr drawgoggles
 	
-loop	
+loop
+
+	; lda $2fc ;	sta screenmem+2
+
 	;jsr incit
 	;inc $5000
 
-    ;lda $d40b	;Load VCOUNT
-	;sta $d40a
+    lda $d40b	;Load VCOUNT
+	sta $d40a
 	;and $5001
-	;sta $d01a	;Change background color
+	adc #$30
+	sta $d01a	;Change background color
 
-	;cmp #$20
-	;bcc loop2
-    ;lda #$00		;Disable screen DMA
-	;sta 559
-
-; loop2
-	; cmp #$c0
-	; bcs loop3
-	; lda #$ff
-	; sta 559
-
-; loop3
 
 	jsr drawmouth
 	jmp loop
 
 drawmouth
-	;lda #$ff
-	;sta 559
-	inc screenmem+120
-
 	ldx #$00
 dmmx
-	inx
-	cpx #$08
 	lda mouth1,x
 	sta mouthstart,x
-	lda mouth1+7,x
-	sta mouthstart+48,x
-	lda mouth1+15,x
-	sta mouthstart+96,x
+	lda mouth1+8,x
+	sta mouthstart+40,x
+	lda mouth1+16,x
+	sta mouthstart+80,x
+	inx
+	cpx #$08
 	bne dmmx
-
-	;lda #$00
-	;sta 559
-	
 	rts
 
 
@@ -78,16 +66,16 @@ dg1
 	sta gogglesmem,x
 
 	lda goggles+18,x
-	sta gogglesmem+48,x
+	sta gogglesmem+40,x
 
 	lda goggles+18+18,x
-	sta gogglesmem+48+48,x
+	sta gogglesmem+40+40,x
 
 	lda goggles+18+18+18,x
-	sta gogglesmem+48+48+48,x
+	sta gogglesmem+40+40+40,x
 
 	lda goggles+18+18+18+18,x
-	sta gogglesmem+48+48+48+48,x
+	sta gogglesmem+40+40+40+40,x
 
 	inx
 	cpx #18
@@ -141,9 +129,9 @@ moincit
 ; 86 = 
 
 mouth1
-.byte 71,72,73,74,75,76,77
-.byte 8,9,10,11,12,13,14
-.byte 15,16,17,18,19,21,22
+.byte 00,00,00,00,00,00,00,00
+.byte 00,86,00,00,00,00,00,86
+.byte 00,71,78,78,78,78,70,00
 
 mouth2
 .byte 0,0,0,0,0,0,0
