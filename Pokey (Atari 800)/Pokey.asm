@@ -12,19 +12,12 @@
 ;//      - Added Pokey.asm
 ;//
 ;//////////////////////////////////////////////////////////////////////////////////////
-
-screenmem  = 40000
-gogglesmem = screenmem+211
-mouthstart = screenmem+536
+;// screenmem  = 40000
 
  	org $2000	;Start of code block
 
-start	
-	lda #$01
-	sta $2f0 ; turn off cursor
-	lda #$00
-	sta screenmem+2
-
+start
+	jsr setscreenram
 	jsr drawgoggles
 	
 loop
@@ -44,15 +37,30 @@ loop
 	jsr drawmouth
 	jmp loop
 
+; /////////////////////// DRAW MOUTH
 drawmouth
 	ldx #$00
+	ldy #$00
 dmmx
+	jsr setmouthram
 	lda mouth1,x
-	sta mouthstart,x
+	sta ($01),y
+
+	lda $01
+	adc #40
+	sta $01
+
 	lda mouth1+8,x
-	sta mouthstart+40,x
+	sta ($01),y
+
+	lda $01
+	adc #40
+	sta $01
+
 	lda mouth1+16,x
-	sta mouthstart+80,x
+	sta ($01),y
+
+	iny
 	inx
 	cpx #$08
 	bne dmmx
@@ -61,24 +69,44 @@ dmmx
 
 drawgoggles
 	ldx #$00
+	ldy #$00
 dg1
+	
+	jsr setgoggleram
 	lda goggles,x
-	sta gogglesmem,x
+	sta ($01),y
+
+	lda $01
+	adc #39
+	sta $01	
 
 	lda goggles+18,x
-	sta gogglesmem+40,x
+	sta ($01),y
+
+	lda $01
+	adc #40
+	sta $01	
 
 	lda goggles+18+18,x
-	sta gogglesmem+40+40,x
+	sta ($01),y
+
+	lda $01
+	adc #40
+	sta $01	
 
 	lda goggles+18+18+18,x
-	sta gogglesmem+40+40+40,x
+	sta ($01),y
+	
+	lda $01
+	adc #40
+	sta $01
 
 	lda goggles+18+18+18+18,x
-	sta gogglesmem+40+40+40+40,x
+	sta ($01),y
 
+	iny
 	inx
-	cpx #18
+	cpx #18 
 	bne dg1
 
 	rts
@@ -100,6 +128,45 @@ moincit
     run start	;Define run address
 
 
+setscreenram
+	lda 88
+	sta $01
+	lda 89
+	sta $02
+	; Get rid of wierd space thing
+	ldy #$02
+	lda #$00
+	sta ($01),y
+	rts
+
+setmouthram
+	lda 88
+	adc #24
+	sta $01
+	lda 89
+	adc #$02
+	sta $02
+
+	; // mouthstart = screenmem+536
+	; //                      - 512
+	; //                        24
+	;
+
+	rts
+
+setgoggleram
+	lda 89
+	sta $02
+	clc
+	lda 88
+	adc #211
+	sta $01
+	bcs sgr2
+	rts
+sgr2
+	inc $02	
+	; // gogglesmem = screenmem+211
+	rts
 
 ; 61 = ^
 ; 62 = underscore
