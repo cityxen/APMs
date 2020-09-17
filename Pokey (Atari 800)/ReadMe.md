@@ -4,9 +4,9 @@ Pokey is a super AI Atari 800 XL, written in MADS. (Programming by Deadline)
 
 ## Instructions:
 
-1-0, q-p: Change Eyes (not implemented yet)
+q-y: Change Eyes
 
-a-l: Change Mouth (not implemented yet)
+a-h: Change Mouth
 
 Appearances:
 Pokey's Portal (First Appearance)
