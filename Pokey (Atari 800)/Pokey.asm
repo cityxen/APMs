@@ -12,7 +12,6 @@
 ;//      - Added Pokey.asm
 ;//
 ;//////////////////////////////////////////////////////////////////////////////////////
-;// screenmem  = 40000
 
  	org $2000	;Start of code block
 
@@ -21,51 +20,296 @@ start
 	jsr drawgoggles
 	
 loop
-
-	; lda $2fc ;	sta screenmem+2
-
-	;jsr incit
-	;inc $5000
-
     lda $d40b	;Load VCOUNT
 	sta $d40a
-	;and $5001
+	
 	adc #$30
 	sta $d01a	;Change background color
 
 
-	jsr drawmouth
+	; KEYBOARD SCAN ROUTINE
+	; https://www.atariarchives.org/c3ba/page004.php (keyboard scan codes)
+
+
+	jsr seteyeleftram
+	lda $02FC ; get last key pressed
+
+	; //// EYES KEYS
+	; eye 1 loc = goggleloc+34
+	; eye 2 loc = goggleloc+43
+
+	; cmp #31 ; 1
+	; cmp #30 ; 2
+	; cmp #26 ; 3
+	; cmp #24 ; 4
+	; cmp #29 ; 5
+	; cmp #27 ; 6
+	; cmp #51 ; 7
+	; cmp #53 ; 8
+	; cmp #48 ; 9
+	; cmp #50 ; 0
+
+	cmp #47 ; Q
+	bne gke2
+	ldy #$00
+	lda #47
+	sta ($01),y
+	ldy #9
+	lda #47
+	sta ($01),y
+	
+gke2
+	cmp #46 ; W
+	bne gke3
+	ldy #$00
+	lda #71
+	sta ($01),y
+	ldy #9
+	lda #70
+	sta ($01),y
+	
+gke3
+	cmp #42 ; E
+	bne gke4
+	ldy #$00
+	lda #82
+	sta ($01),y
+	ldy #9
+	lda #82
+	sta ($01),y
+
+gke4
+	cmp #40 ; R
+	bne gke5
+	ldy #$00
+	lda #51
+	sta ($01),y
+	ldy #9
+	lda #51
+	sta ($01),y
+
+gke5
+	cmp #45 ; T
+	bne gke6
+	ldy #$00
+	lda #53
+	sta ($01),y
+	ldy #9
+	lda #53
+	sta ($01),y
+
+gke6
+	cmp #43 ; Y
+	bne gke7
+	ldy #$00
+	lda #33
+	sta ($01),y
+	ldy #9
+	lda #34
+	sta ($01),y
+
+gke7
+	; cmp #11 ; U
+	; cmp #13 ; I
+	; cmp #8  ; O
+	; cmp #10 ; P
+
+	; cmp #54 ; <
+	; cmp #55 ; >
+	; cmp #52 ; DEL
+	; cmp #14 ; -
+	; cmp #15 ; =
+	; cmp #12 ; RETURN
+	; cmp #2  ; ;
+	; cmp #6  ; +
+	; cmp #7  ; *
+	; cmp #60 ; CAPS
+	; cmp #33 ; SPACE
+	; cmp #28 ; ESC
+	; cmp #44 ; TAB
+
+
+	; //// MOUTH KEYS
+	cmp #63 ; A
+	bne gkp2
+	jsr drawmouth1
+
+gkp2
+	cmp #62 ; S
+	bne gkp3
+	jsr drawmouth2
+
+gkp3
+	cmp #58 ; D
+	bne gkp4
+	jsr drawmouth3
+
+gkp4
+	cmp #56 ; F
+	bne gkp5
+	jsr drawmouth4
+
+gkp5
+	cmp #61 ; G
+	bne gkp6
+	jsr drawmouth5
+
+gkp6
+	cmp #57 ; H
+	bne gkp7
+	jsr drawmouth6
+
+gkp7
+
+	; cmp #1  ; J
+	; cmp #5  ; K
+	; cmp #0  ; L
+
+	lda #$00
+	sta $02FC
+
 	jmp loop
 
-; /////////////////////// DRAW MOUTH
-drawmouth
+; /////////////////////// DRAW MOUTHS
+drawmouth1
 	ldx #$00
 	ldy #$00
 dmmx
 	jsr setmouthram
 	lda mouth1,x
 	sta ($01),y
-
 	lda $01
 	adc #40
 	sta $01
-
 	lda mouth1+8,x
 	sta ($01),y
-
 	lda $01
 	adc #40
 	sta $01
-
 	lda mouth1+16,x
 	sta ($01),y
-
 	iny
 	inx
 	cpx #$08
 	bne dmmx
 	rts
 
+drawmouth2
+	ldx #$00
+	ldy #$00
+dmmx2
+	jsr setmouthram
+	lda mouth2,x
+	sta ($01),y
+	lda $01
+	adc #40
+	sta $01
+	lda mouth2+8,x
+	sta ($01),y
+	lda $01
+	adc #40
+	sta $01
+	lda mouth2+16,x
+	sta ($01),y
+	iny
+	inx
+	cpx #$08
+	bne dmmx2
+	rts
+
+drawmouth3
+	ldx #$00
+	ldy #$00
+dmmx3
+	jsr setmouthram
+	lda mouth3,x
+	sta ($01),y
+	lda $01
+	adc #40
+	sta $01
+	lda mouth3+8,x
+	sta ($01),y
+	lda $01
+	adc #40
+	sta $01
+	lda mouth3+16,x
+	sta ($01),y
+	iny
+	inx
+	cpx #$08
+	bne dmmx3
+	rts	
+
+drawmouth4
+	ldx #$00
+	ldy #$00
+dmmx4
+	jsr setmouthram
+	lda mouth4,x
+	sta ($01),y
+	lda $01
+	adc #40
+	sta $01
+	lda mouth4+8,x
+	sta ($01),y
+	lda $01
+	adc #40
+	sta $01
+	lda mouth4+16,x
+	sta ($01),y
+	iny
+	inx
+	cpx #$08
+	bne dmmx4
+	rts	
+
+drawmouth5
+	ldx #$00
+	ldy #$00
+dmmx5
+	jsr setmouthram
+	lda mouth5,x
+	sta ($01),y
+	lda $01
+	adc #40
+	sta $01
+	lda mouth5+8,x
+	sta ($01),y
+	lda $01
+	adc #40
+	sta $01
+	lda mouth5+16,x
+	sta ($01),y
+	iny
+	inx
+	cpx #$08
+	bne dmmx5
+	rts	
+
+drawmouth6
+	ldx #$00
+	ldy #$00
+dmmx6
+	jsr setmouthram
+	lda mouth6,x
+	sta ($01),y
+	lda $01
+	adc #40
+	sta $01
+	lda mouth6+8,x
+	sta ($01),y
+	lda $01
+	adc #40
+	sta $01
+	lda mouth6+16,x
+	sta ($01),y
+	iny
+	inx
+	cpx #$08
+	bne dmmx6
+	rts		
+
+; /////////////////////// DRAW GOGGLES
 
 drawgoggles
 	ldx #$00
@@ -111,22 +355,7 @@ dg1
 
 	rts
 
-incit
-	clc
-	inc $5000
-	lda $5000
-	cmp #$ff
-	beq moincit
-	rts
-
-moincit 
-    lda #$00
-    sta $5000
-    inc $5001
-    rts	
-        
-    run start	;Define run address
-
+; /////////////////////// SET MEMORY LOCATIONS
 
 setscreenram
 	lda 88
@@ -168,53 +397,52 @@ sgr2
 	; // gogglesmem = screenmem+211
 	rts
 
-; 61 = ^
-; 62 = underscore
-; 63 = HEART
-; 64 = |-
-; 65 =  |
-; 66 = corner left up
-; 67 =  -|
-; 68 = corner left down
-; 69 = /
-; 70 = \
-; 71 = right wedge
-; 72 = bot right block
-; 73 = left wedge
-; 74 = top right block
-; 75 = top left block
-; 76 = line top
-; 77 = line bottom
-; 78 = bot left block
-; 79 = CLUBS
-; 80 = corner right down
-; 81 = line middle
-; 82 = CROSS line
-; 83 = CIRCLE
-; 84 = BLOCK BIG bottom
-; 85 = line left
-; 86 = 
+seteyeleftram
+	jsr setgoggleram
+	clc
+	lda $01
+	adc #84
+	sta $01
+	bcc selr2
+	inc $02
+selr2
+	rts
 
-mouth1
+mouth1 ; no mouth
 .byte 00,00,00,00,00,00,00,00
-.byte 00,86,00,00,00,00,00,86
+.byte 00,00,00,00,00,00,00,00
+.byte 00,00,00,00,00,00,00,00
+
+mouth2 ; smile
+.byte 00,00,00,00,00,00,00,00
+.byte 00,86,00,00,00,00,66,00
 .byte 00,71,78,78,78,78,70,00
 
-mouth2
-.byte 0,0,0,0,0,0,0
-.byte 0,0,0,0,0,0,0
-.byte 0,0,0,0,0,0,0
+mouth3 ; line
+.byte 00,00,00,00,00,00,00,00
+.byte 00,00,78,78,78,78,00,00
+.byte 00,00,00,00,00,00,00,00
 
-mouth3
-.byte 0,0,0,0,0,0,0
-.byte 0,0,0,0,0,0,0
-.byte 0,0,0,0,0,0,0
+mouth4 ; talk 1
+.byte 00,78,78,78,78,78,78,00
+.byte 00,86,00,00,00,00,66,00
+.byte 00,71,78,78,78,78,70,00
+
+mouth5 ; talk 2
+.byte 00,00,00,00,00,00,00,00
+.byte 00,00,70,77,77,71,00,00
+.byte 00,00,71,78,78,70,00,00
+
+mouth6 ; talk 3
+.byte 00,00,00,00,00,00,00,00
+.byte 00,00,28,70,71,30,00,00
+.byte 00,00,00,71,70,00,00,00
 
 goggles
-;      0  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17
 .byte 70,77,77,77,77,77,77,77,77,77,77,77,77,77,77,77,77,71
 .byte 86,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,66
 .byte 86,00,00,00,47,00,00,00,00,00,00,00,00,47,00,00,00,66
-.byte 86,00,00,00,00,00,00,00,78,78,00,00,00,00,00,00,00,66
-.byte 71,78,78,78,78,78,78,70,00,00,71,78,78,78,78,78,78,70
+.byte 86,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,66
+.byte 71,78,78,78,78,78,78,70,77,77,71,78,78,78,78,78,78,70
 
+	run start	;Define run address
