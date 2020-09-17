@@ -34,10 +34,6 @@ loop
 	jsr seteyeleftram
 	lda $02FC ; get last key pressed
 
-	; //// EYES KEYS
-	; eye 1 loc = goggleloc+34
-	; eye 2 loc = goggleloc+43
-
 	; cmp #31 ; 1
 	; cmp #30 ; 2
 	; cmp #26 ; 3
@@ -49,64 +45,88 @@ loop
 	; cmp #48 ; 9
 	; cmp #50 ; 0
 
-	cmp #47 ; Q
+
+; // EYES KEYS 
+	cmp #47 ; Q (Regular    O   O   )
 	bne gke2
-	ldy #$00
+	ldy #41
 	lda #47
 	sta ($01),y
-	ldy #9
+	ldy #50
 	lda #47
 	sta ($01),y
+	jmp endkeys
 	
 gke2
-	cmp #46 ; W
+	cmp #46 ; W (Worried Look /  \)
 	bne gke3
-	ldy #$00
-	lda #71
-	sta ($01),y
-	ldy #9
+
+	; Toggle
+	inc worried
+	lda worried
+	and #$01
+	beq worryoff
+worryon
+	ldy #0
 	lda #70
 	sta ($01),y
+	ldy #11
+	lda #71
+	sta ($01),y
+	jmp endkeys
+worryoff
+	ldy #0
+	lda #0
+	sta ($01),y
+	ldy #11
+	lda #0
+	sta ($01),y
+	jmp endkeys
+
 	
 gke3
-	cmp #42 ; E
+	cmp #42 ; E (Blink   -  -  )
 	bne gke4
-	ldy #$00
+	ldy #41
 	lda #82
 	sta ($01),y
-	ldy #9
+	ldy #50
 	lda #82
 	sta ($01),y
+	jmp endkeys
 
 gke4
-	cmp #40 ; R
+	cmp #40 ; R (Look Left <  <  )
 	bne gke5
-	ldy #$00
-	lda #51
+	ldy #41
+	lda #30
 	sta ($01),y
-	ldy #9
-	lda #51
+	ldy #50
+	lda #30
 	sta ($01),y
+	jmp endkeys
 
 gke5
-	cmp #45 ; T
+	cmp #45 ; T (Look Right >  > )
 	bne gke6
-	ldy #$00
-	lda #53
+	ldy #41
+	lda #28
 	sta ($01),y
-	ldy #9
-	lda #53
+	ldy #50
+	lda #28
 	sta ($01),y
+	jmp endkeys
 
 gke6
 	cmp #43 ; Y
 	bne gke7
-	ldy #$00
+	ldy #41
 	lda #33
 	sta ($01),y
-	ldy #9
+	ldy #50
 	lda #34
 	sta ($01),y
+	jmp endkeys
 
 gke7
 	; cmp #11 ; U
@@ -138,26 +158,31 @@ gkp2
 	cmp #62 ; S
 	bne gkp3
 	jsr drawmouth2
+	jmp endkeys
 
 gkp3
 	cmp #58 ; D
 	bne gkp4
 	jsr drawmouth3
+	jmp endkeys
 
 gkp4
 	cmp #56 ; F
 	bne gkp5
 	jsr drawmouth4
+	jmp endkeys
 
 gkp5
 	cmp #61 ; G
 	bne gkp6
 	jsr drawmouth5
+	jmp endkeys
 
 gkp6
 	cmp #57 ; H
 	bne gkp7
 	jsr drawmouth6
+	jmp endkeys
 
 gkp7
 
@@ -165,6 +190,7 @@ gkp7
 	; cmp #5  ; K
 	; cmp #0  ; L
 
+endkeys
 	lda #$00
 	sta $02FC
 
@@ -401,7 +427,7 @@ seteyeleftram
 	jsr setgoggleram
 	clc
 	lda $01
-	adc #84
+	adc #43
 	sta $01
 	bcc selr2
 	inc $02
@@ -444,5 +470,8 @@ goggles
 .byte 86,00,00,00,47,00,00,00,00,00,00,00,00,47,00,00,00,66
 .byte 86,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,66
 .byte 71,78,78,78,78,78,78,70,77,77,71,78,78,78,78,78,78,70
+
+worried
+.byte 0
 
 	run start	;Define run address
