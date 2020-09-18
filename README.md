@@ -12,7 +12,7 @@ Clicky (Commodore 64) M
 
 Amy (Amiga) F
 
-Pokey (Atari 800) M (WIP)
+Pokey (Atari 800) M
 
 Fido (Commodore PET) (WIP)
 
