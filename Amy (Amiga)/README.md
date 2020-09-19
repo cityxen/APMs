@@ -10,6 +10,8 @@ a-l: Change Mouth
 
 ## Appearances:
 
+https://www.youtube.com/watch?v=YvzDjXgwiCQ (Pokey's Portal)
+
 https://www.youtube.com/watch?v=bCpYkV4iX0c (Valentine's Day 2020, First Appearance)
 
 ## Images:

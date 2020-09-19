@@ -9,7 +9,8 @@ q-y: Change Eyes
 a-h: Change Mouth
 
 Appearances:
-Pokey's Portal (First Appearance)
+
+https://www.youtube.com/watch?v=YvzDjXgwiCQ (Pokey's Portal (First Appearance))
 
 ## Images
 
