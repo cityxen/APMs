@@ -54,7 +54,7 @@ Benny (BBC Micro) M
 
 Angus (Amstrad CPC 464) M
 
-Terry (Atari ST) M
+Stella (Atari ST) F
 
 ## Consolas Gang (Not Done):
 
