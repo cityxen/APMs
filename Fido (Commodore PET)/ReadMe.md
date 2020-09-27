@@ -10,9 +10,7 @@ a-l: Change Mouth
 
 z: SWAP Between DOG and CAT mode (not implemented yet)
 
-
 Appearances:
-Pokey's Portal (First Appearance)
 
 ## Images
 

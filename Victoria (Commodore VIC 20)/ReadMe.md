@@ -1,6 +1,6 @@
-# Fido
+# Victoria
 
-Fido is a super AI Commodore PET, written in KickAssembler for the Commodore PET. (Programming by Deadline)
+Victoria is a super AI Commodore VIC 20, written in KickAssembler for the Commodore VIC 20. (Programming by Deadline)
 
 ## Instructions:
 
@@ -8,14 +8,10 @@ Fido is a super AI Commodore PET, written in KickAssembler for the Commodore PET
 
 a-l: Change Mouth
 
-z: SWAP Between DOG and CAT mode (not implemented yet)
-
-
 Appearances:
-Pokey's Portal (First Appearance)
 
 ## Images
 
-![Fido1](https://raw.githubusercontent.com/cityxen/APMs/master/Fido%20(Commodore%20PET)/images/fido1.JPG)
-![Fido2](https://raw.githubusercontent.com/cityxen/APMs/master/Fido%20(Commodore%20PET)/images/fido2.JPG)
+![Victoria1](https://raw.githubusercontent.com/cityxen/APMs/master/Victoria%20(Commodore%20VIC%2020)/images/Victoria1.jpg)
+![Victoria2](https://raw.githubusercontent.com/cityxen/APMs/master/Victoria%20(Commodore%20VIC%2020)/images/Victoria2.jpg)
 
