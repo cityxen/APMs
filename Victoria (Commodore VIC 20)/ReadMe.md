@@ -12,6 +12,6 @@ Appearances:
 
 ## Images
 
-![Victoria1](https://raw.githubusercontent.com/cityxen/APMs/master/Victoria%20(Commodore%20VIC%2020)/images/Victoria1.jpg)
-![Victoria2](https://raw.githubusercontent.com/cityxen/APMs/master/Victoria%20(Commodore%20VIC%2020)/images/Victoria2.jpg)
+![Victoria1](https://raw.githubusercontent.com/cityxen/APMs/master/Victoria%20(Commodore%20VIC%2020)/images/victoria1.jpg)
+![Victoria2](https://raw.githubusercontent.com/cityxen/APMs/master/Victoria%20(Commodore%20VIC%2020)/images/victoria2.jpg)
 
