@@ -14,6 +14,8 @@ Amy (Amiga) F
 
 Pokey (Atari 800) M
 
+Victoria (Commodore VIC 20) F (WIP)
+
 Fido (Commodore PET) (WIP)
 
 ## Evil (Not Done):
@@ -45,8 +47,6 @@ Teddy (Commodore +4/16) M
 Trish (TRS80 CoCo) F (Appearance in Valentine's Day 2020 was post processed manually)
 
 Speckles (Spectrum ZX) F
-
-Victoria (Commodore VIC 20) F
 
 Mackayla (Apple Macintosh) F
 
