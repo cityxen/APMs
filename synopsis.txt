@@ -1,1 +1,59 @@
-We've decided that we're gonna do a whole new series based on the computer AI personas like Clicky. It'll be something in between a comic and an 80's action TV show. The main protagonist will be DOSBoss and his clone army.
+CityXen
+
+Characters (CIA):
+Deadline - Youtuber making great retro gaming, and vintage computer videos
+Xamfear - Youtuber making great retro gaming, and vintage computer videos
+Exidor - Youtuber making great retro gaming, and vintage computer videos
+Crash - Youtuber making great retro gaming, and vintage computer videos
+xSurvivor7x - Youtuber making great retro gaming, and vintage computer videos
+Helmet Reaper - Master software coder, does not like Clicky and tries to deactivate him
+Eagull - Master of computer hardware and human biology, experiments with combining the two
+Mr. Robot - Cyborg created by the US Government able to infiltrate enemy strongholds undetected
+
+==========================================================================================
+
+GOOD AI (CIA):
+Clicky - AI C= 64, Thinks very highly of himself, narcissistic, thinks he is in control, over compensates
+Pokey - AI Atari 800 XL, a kind old soul happy to help anyone, 
+Amy - AI C= Amiga, motherly, naggy, altruistic, holier than thou no matter who she is talking to
+Victoria - AI C= VIC 20, the most advanced AI of them all, wise beyond her years
+Fido - AI C= PET, cute, adorable, fetching, needs cuddles, brings messages
+Stella - AI Atari ST, musically inclined, not so good on looks, keeps to herself except when info needs dissemenating
+Apollol - AI Apple II, Carefree, perfectly comfortable with himself
+Timmy - AI TI99/4a, A wizard, grows shrubbery in spare time
+Trish - AI TRS CoCo, Interested in Clicky romantically, gullible
+
+==========================================================================================
+
+EVIL AI:
+Ms DOS - AI The main antagonist will be Ms DOS and her clone army
+Ms DOS clones - AI evil army
+
+==========================================================================================
+
+CityXen was happily making great retro gaming, and vintage computer videos, when they found themselves in the
+middle of an interdimensional AI war. Now they are in the frontlines of this battle between GOOD
+and EVIL, and have formed the CIA to help centralize information about what kind of systems
+they are finding, and to analyze their weaknesses.
+
+Helmet Reaper has a "Magic Scythe" with 5 1/4, 3 1/2 and CD ROM discs.
+The discs contain special code to subdue Ms DOS's clones. One simply has to insert the
+media into a clone, or other machine, for it to take affect.
+
+Helmet Reaper - "The clones have one weakness, they still have old media drives.
+If I could get close enough to one to use the Hackme Flash-A-Traitor (FAT),
+we could put a special Trojan on their system that they won't be able to resist scanning.
+When they eventually, but almost always instantly, scan the files, the hook mechanism
+will be reprogram it to be on our side. Although, there may be some residual,
+unpredictable random personality traits uploaded in the process."
+
+Helmet Reaper - "In the case of an annoying personality appearing, we can run the Hackme
+Rand-O-Psyche (ROPE). The results are unpredictable, but it will not harm the clones, and
+they will then do our bidding."
+
+Eagull is a master of hardware. He can take apart systems and make things work together
+that were not originally intended.
+
+Mr. Robot is a cyborg. He can speak with machines that do not have vocoders, and translate.
+He also can infiltrate the enemy lairs to gather intelligence undetected.
+
