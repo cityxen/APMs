@@ -8,6 +8,8 @@ Victoria is a super AI Commodore VIC 20, written in KickAssembler for the Commod
 
 a-l: Change Mouth
 
+f1: Toggle RIGHT arrow on the screen
+
 Appearances:
 
 ## Images
