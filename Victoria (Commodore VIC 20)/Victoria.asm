@@ -35,9 +35,9 @@ BasicUpstart($1010)
 start:
     lda #$93 // clear screen
     jsr $ffd2
-    
-	lda #$cc 
-	sta $900f // change background / border color
+
+    lda #$cc
+    sta $900f // change background / border color    
 
 	ldx #$00
 cramx:
@@ -49,7 +49,7 @@ cramx:
 	cpx #$00
 	bne cramx
 
-    lda #$01
+    lda #$00
     jsr draw_eyes
     lda #$01
     jsr draw_mouth
@@ -70,56 +70,23 @@ mainloop:
     jmp mainloop
 
 !keycheck:
-    /*
 
-    cmp #$51 // Q
+    cmp #$30 // 0
     bne !keycheck+
-    lda #$02
-    ldx #$00
-    jsr set_expression
+    lda #$00
+    jsr draw_eyes
     jmp mainloop
-!keycheck:
-    cmp #$57 // W
-    bne !keycheck+
-    lda #$03
-    ldx #$00
-    jsr set_expression
-    jmp mainloop
-!keycheck:
-    cmp #$45 // E
-    bne !keycheck+
-    lda #$04
-    ldx #$00
-    jsr set_expression
-    jmp mainloop
-!keycheck: // R
-    cmp #$52
-    bne !keycheck+
-    lda #$05
-    ldx #$00
-    jsr set_expression
-    jmp mainloop
-!keycheck: // T
-    cmp #$54
-    bne !keycheck+
-    lda #$0F
-    ldx #$00
-    jsr set_expression
-    jmp mainloop
+
 !keycheck:
     cmp #$31 // 1
     bne !keycheck+
-    lda #$06
-    ldx #$00
-    jsr set_expression
+    lda #$01
+    jsr draw_eyes
     jmp mainloop
-!keycheck:
-    cmp #$32 // 2
-    bne !keycheck+
-    lda #$07
-    ldx #$00
-    jsr set_expression
-    jmp mainloop
+   
+/*
+
+
 !keycheck:
     cmp #$33 // 3
     bne !keycheck+
@@ -235,11 +202,43 @@ mainloop:
     jsr draw_mouth
     jmp mainloop
 
+!keycheck:
+    cmp #$85 // F1 toggle arrow flashing
+    bne !keycheck+
+    lda arrow_right
+    beq arrow_right_on
+arrow_right_off: // turn scar off
+    ldx #$00
+    stx arrow_right
+arrow_right_loop0:
+    lda arrow_right_data,x
+    sta screenram,x
+    lda arrow_right_data+$ff,x
+    sta screenram+$ff,x
+    inx
+    cpx #$ff
+    bne arrow_right_loop0
+    jmp mainloop
+arrow_right_on: // turn scar on
+    ldx #$00
+    inc arrow_right
+arrow_right_loop1:
+    lda #$20
+    sta screenram,x
+    sta screenram+$ff,x
+    inx
+    cpx #$ff
+    bne arrow_right_loop1
+    jmp mainloop
+
 !keycheck: // end_keyboard_checks
 
     jmp mainloop
 // END MAINLOOP
 //////////////////////////////////////////////////
+
+//////////////////////////////////////////////////
+// DRAW MOUTH
 
 draw_mouth:
 
@@ -317,16 +316,55 @@ draw_mouth_continue:
     cpy #$1b
     bne !dmlp-
     ldy #$1b
-
     rts
+
+// END DRAW MOUTH    
+//////////////////////////////////////////////////
+
+//////////////////////////////////////////////////
+// DRAW EYES
 
 draw_eyes:
 
+    cmp #$00
+    bne !draw_eyes+
+    
+draw_eyes_0:
     lda #$30
-
     sta eye_left
     sta eye_right
     rts
 
+!draw_eyes:
+    cmp #$01
+    bne !draw_eyes+
+    lda #$43
+    sta eye_left
+    sta eye_right
 
+!draw_eyes:
+    rts
+
+// END DRAW EYES
+//////////////////////////////////////////////////
+
+//////////////////////////////////////////////////
+// ANIMATE
+
+
+
+// 
+//////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////
+// VARIABLES 
+
+arrow_right:
+.byte $00
+
+// END VARIABLES
+//////////////////////////////////////////////////
+
+#import "arrow_right.asm"
 #import "mouthdata.asm"
