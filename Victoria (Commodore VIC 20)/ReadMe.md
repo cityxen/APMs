@@ -4,11 +4,13 @@ Victoria is a super AI Commodore VIC 20, written in KickAssembler for the Commod
 
 ## Instructions:
 
-1-0, q-p: Change Eyes (not implemented yet)
+0 or 1: Change Eyes
+
+q-p: Change Eyes (not implemented yet)
 
 a-l: Change Mouth
 
-f1: Toggle RIGHT arrow on the screen
+f1: Toggle RIGHT arrow flash on the screen
 
 Appearances:
 

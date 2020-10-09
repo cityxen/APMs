@@ -33,21 +33,8 @@ BasicUpstart($1010)
 *=$1010
 
 start:
-    lda #$93 // clear screen
-    jsr $ffd2
 
-    lda #$cc
-    sta $900f // change background / border color    
-
-	ldx #$00
-cramx:
-	lda #$00
-	sta colorram,x
-	sta colorram+256,x
-	sta colorram+512,x
-	inx
-	cpx #$00
-	bne cramx
+    jsr clear_screen
 
     lda #$00
     jsr draw_eyes
@@ -205,11 +192,71 @@ mainloop:
 !keycheck:
     cmp #$85 // F1 toggle arrow flashing
     bne !keycheck+
+    inc arrow_right
     lda arrow_right
-    beq arrow_right_on
+    and #$01
+    sta arrow_right
+    bne keycheck_end
+    jsr clear_screen
+    lda #$00
+    jsr draw_eyes
+    lda #$06
+    jsr draw_mouth
+    jmp mainloop
+
+!keycheck: // end_keyboard_checks
+keycheck_end:
+
+    jsr do_animations
+    jmp mainloop
+
+// END MAINLOOP
+//////////////////////////////////////////////////
+
+//////////////////////////////////////////////////
+// ANIMATIONS SUBROUTINE
+do_animations:
+
+    lda arrow_right
+    beq !animations++
+
+    // arrow timer
+    clc
+    inc arrow_timer
+    lda arrow_timer
+    bne !animations++
+
+!animations:
+    inc arrow_timer+1
+    lda arrow_timer+1
+    cmp #$10
+    bne !animations+
+
+    // arrow_frame inc
+arrow_frame_inc:
+    lda #$00
+    sta arrow_timer+1
+    inc arrow_right_frame
+    lda arrow_right_frame
+    and #$01
+    sta arrow_right_frame
+    beq arrow_draw_cls
+    jsr draw_arrow
+    jmp !animations+
+arrow_draw_cls:
+    jsr clear_screen
+!animations:
+
+    rts
+// END ANIMATIONS
+//////////////////////////////////////////////////
+
+//////////////////////////////////////////////////
+// DRAW ARROW
+draw_arrow:
+
 arrow_right_off: // turn scar off
     ldx #$00
-    stx arrow_right
 arrow_right_loop0:
     lda arrow_right_data,x
     sta screenram,x
@@ -218,23 +265,32 @@ arrow_right_loop0:
     inx
     cpx #$ff
     bne arrow_right_loop0
-    jmp mainloop
-arrow_right_on: // turn scar on
-    ldx #$00
-    inc arrow_right
-arrow_right_loop1:
-    lda #$20
-    sta screenram,x
-    sta screenram+$ff,x
-    inx
-    cpx #$ff
-    bne arrow_right_loop1
-    jmp mainloop
+    rts
+// END DRAW ARROW
+//////////////////////////////////////////////////
 
-!keycheck: // end_keyboard_checks
+//////////////////////////////////////////////////
+// CLEAR SCREEN
+clear_screen:
+    lda #$93 // clear screen
+    jsr $ffd2
 
-    jmp mainloop
-// END MAINLOOP
+    lda #$cc
+    sta $900f // change background / border color    
+
+	ldx #$00
+cramx:
+	lda #$00
+	sta colorram,x
+	sta colorram+256,x
+	sta colorram+512,x
+	inx
+	cpx #$00
+	bne cramx
+
+    rts
+
+// END CLEAR SCREEN
 //////////////////////////////////////////////////
 
 //////////////////////////////////////////////////
@@ -360,7 +416,11 @@ draw_eyes_0:
 //////////////////////////////////////////////////
 // VARIABLES 
 
+arrow_timer:
+.byte $00,$00
 arrow_right:
+.byte $00
+arrow_right_frame:
 .byte $00
 
 // END VARIABLES
