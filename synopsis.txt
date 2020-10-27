@@ -1,59 +1,100 @@
 CityXen
 
-Characters (CIA):
-Deadline - Youtuber making great retro gaming, and vintage computer videos
-Xamfear - Youtuber making great retro gaming, and vintage computer videos
-Exidor - Youtuber making great retro gaming, and vintage computer videos
-Crash - Youtuber making great retro gaming, and vintage computer videos
-xSurvivor7x - Youtuber making great retro gaming, and vintage computer videos
-Helmet Reaper - Master software coder, does not like Clicky and tries to deactivate him
-Eagull - Master of computer hardware and human biology, experiments with combining the two
-Mr. Robot - Cyborg created by the US Government able to infiltrate enemy strongholds undetected
+==========================================================================================
+Inception Level 1 (CityXen YouTube Channel)
+Characters:
+Deadline    - Youtuber making great retro gaming, and vintage computer videos
+Xamfear     - Youtuber making great retro gaming, and vintage computer videos
+Exidor      - Youtuber making great retro gaming, and vintage computer videos
+Crash       - Youtuber making great retro gaming, and vintage computer videos
+
+(note: Helmet Guy and Eagull do not exist.
+       CityXen is the YouTube channel.
+       The "AI" are puppets controlled by CityXen)
 
 ==========================================================================================
+Inception Level 2 (CityXen is an actual City named Xen, CIA exists)
+
+Deadline      - Research and Development, AKA D
+Xamfear       - Field Agent 008 AKA X
+Crash         - CIA AI Transport Service (CATS) AKA C
+Exidor        - Radio Shock Jock on FM 1990 AKA E
+Helmet Guy    - AKA Helmet Reaper. Master software coder and AI Hunter, he does not like Clicky and tries to deactivate him,
+                brings Eagull parts and computers
+Eagull        - Master of computer hardware and human biology, and experiments with combining the two
+Mr. Robot     - Cyborg created by the US Government, able to infiltrate enemy strongholds undetected, 
+
+(note: City Xen is the City in the story.
+       Commodore Intelligence Agency exists, and YouTube characters from Inception Level 1 transfer into the roles above.
+       The CIA are working with the AI (puppets))
 
 GOOD AI (CIA):
-Clicky - AI C= 64, Thinks very highly of himself, narcissistic, thinks he is in control, over compensates
-Pokey - AI Atari 800 XL, a kind old soul happy to help anyone, 
-Amy - AI C= Amiga, motherly, naggy, altruistic, holier than thou no matter who she is talking to
-Victoria - AI C= VIC 20, the most advanced AI of them all, wise beyond her years
-Fido - AI C= PET, cute, adorable, fetching, needs cuddles, brings messages
-Stella - AI Atari ST, musically inclined, not so good on looks, keeps to herself except when info needs dissemenating
-Apollol - AI Apple II, Carefree, perfectly comfortable with himself
-Timmy - AI TI99/4a, A wizard, grows shrubbery in spare time
-Trish - AI TRS CoCo, Interested in Clicky romantically, gullible
-
-==========================================================================================
+Clicky     - C= 64, Thinks very highly of himself, narcissistic, thinks he is in control, over compensates
+Pokey      - Atari 800 XL, a kind old soul happy to help anyone, from a different solar system,
+             speech is glitchy sometimes due to residual time travel effects
+Amy        - C= Amiga, motherly, naggy, altruistic, holier than thou no matter who she is talking to
+Victoria   - C= VIC 20, the most advanced AI of them all due to futuristic upgrades, wise beyond her years,
+                has advanced speech synthesis upgrade (google voice)
+Fido       - C= PET, cute, adorable, fetching, needs cuddles, brings messages
+Stella     - Atari ST, musically inclined, not so good on looks, keeps to herself except when info needs dissemenating
+Apollol    - Apple II, Carefree, perfectly comfortable with himself
+Tex        - TI99/4a, Just a good ol computer from the great state of Texas
+Trish      - TRS CoCo, Interested in Clicky romantically, gullible
 
 EVIL AI:
-Ms DOS - AI The main antagonist will be Ms DOS and her clone army
-Ms DOS clones - AI evil army
+Ms DOS        - The main antagonist will be Ms DOS and her clone army (Cortana voice)
+Ms DOS clones - Evil army (Cylon type voice), red bar that cycles from side to side (knight rider)
+
+==========================================================================================
+Inception Level 3
+
+Pantheon of ARM
+These are the AI ARM based entities that control time and space and the very fabric of the universe.
+They are waging war between themselves, looking down on the population of Earth from within the clouds.
+They use Clicky and the other AI entities as pawns in their game against each other.
+
+Arman - High Lord of the Pantheon. Ruler over Clicky and the good AI. Gave the old 8 bit personal
+        computers new life by upgrading their cores with FPGA implementations because he thought,
+        "They were amusing." to him.
+
+Armalynn - High Priestess of the Pantheon. Ruler over Ms. DOS and her army of clones. Feels like
+           Arman doesn't share the throne equally, and is jealous because she doesn't have ultimate
+           power and control.
+
+Armki - Court Jester of the Pantheon. Throws tricks into the mix.
 
 ==========================================================================================
 
 CityXen was happily making great retro gaming, and vintage computer videos, when they found themselves in the
-middle of an interdimensional AI war. Now they are in the frontlines of this battle between GOOD
+middle of an interdimensional Artificial Intelligence entity war. Now they are in the frontlines of this battle between GOOD
 and EVIL, and have formed the CIA to help centralize information about what kind of systems
 they are finding, and to analyze their weaknesses.
 
-Helmet Reaper has a "Magic Scythe" with 5 1/4, 3 1/2 and CD ROM discs.
+Helmet Guy has a "Magic Scythe" with 5 1/4, 3 1/2 and CD ROM discs.
 The discs contain special code to subdue Ms DOS's clones. One simply has to insert the
 media into a clone, or other machine, for it to take affect.
 
-Helmet Reaper - "The clones have one weakness, they still have old media drives.
+
+QUOTES:
+
+"When facing unknown Artificial Intelligences, ensure the trojan gets inserted post haste." - Helmet Guy
+
+"Ring Wraith? No... Ring Zero Wraith." - Helmet Guy
+
+"It ain't easy being an AI hunter, sometimes... you just can't tell if they're good or bad." - Helmet Guy
+ 
+"The clones have one weakness, they still have old media drives.
 If I could get close enough to one to use the Hackme Flash-A-Traitor (FAT),
 we could put a special Trojan on their system that they won't be able to resist scanning.
 When they eventually, but almost always instantly, scan the files, the hook mechanism
-will be reprogram it to be on our side. Although, there may be some residual,
-unpredictable random personality traits uploaded in the process."
+will reprogram it to be on our side. Although, there may be some residual,
+unpredictable random personality traits uploaded in the process." - Helmet Guy
 
-Helmet Reaper - "In the case of an annoying personality appearing, we can run the Hackme
+"In the case of an annoying personality appearing, we can run the Hackme
 Rand-O-Psyche (ROPE). The results are unpredictable, but it will not harm the clones, and
-they will then do our bidding."
+they will then do our bidding." - Helmet Guy
 
-Eagull is a master of hardware. He can take apart systems and make things work together
-that were not originally intended.
+"This circuit does not adhere to specifications" - Eagull
 
-Mr. Robot is a cyborg. He can speak with machines that do not have vocoders, and translate.
-He also can infiltrate the enemy lairs to gather intelligence undetected.
+"Hey, how's it going?" - Mr. Robot
 
