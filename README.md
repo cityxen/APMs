@@ -9,7 +9,7 @@ APMs: ( In order they were created )
 | Character | Alignment | Machine | Toolchain |  Progress |
 | --- | --- | --- | --- | --- |
 | Clicky| Good | Commodore 64 | KickAssembler/VICE | Mostly Done |
-| Amy  | Good | Commodore Amiga | AMOS Pro/Amiga500 | Mostly Done, rework in 68k asm planned |
+| Amy  | Good | Commodore Amiga | AMOS Pro/Amiga500 | Mostly Done |
 | Pokey | Good | Atari 800 XL | VASM6502/Altirra64 | Mostly Done |
 | Victoria | Good | Commodore VIC-20 | KickAssembler/VICE | WIP |
 | Kids | Good | Various Handheld Electronics | ? | ? |
