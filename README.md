@@ -9,7 +9,7 @@ The League of 8 Bit Survival has travelled to the Earth through various wormhole
 APMs: ( In order they were created )
 
 | Character | Alignment | Machine | Toolchain |  Progress |
-| --- | --- | --- | --- |
+| --- | --- | --- | --- | --- |
 | Clicky| Good | Commodore 64 | KickAssembler/VICE | Mostly Done |
 | Amy  | Good | Commodore Amiga | AMOS Pro/Amiga500 | Mostly Done, rework in 68k asm planned |
 | Pokey | Good | Atari 800 XL | VASM6502/Altirra64 | Mostly Done |
