@@ -5,6 +5,9 @@
 ;// Pokey is the Atari 8 bit line digital puppet
 ;// 
 ;//////////////////////////////////////////////////////////////////////////////////////
+;//  MADS assembler is required
+;//  http://mads.atari8.info/
+;//  https://github.com/tebe6502/Mad-Assembler/releases
 ;// 
 ;// History:
 ;// 
@@ -28,7 +31,7 @@ loop
 
 
 	; KEYBOARD SCAN ROUTINE
-	; https://www.atariarchives.org/c3ba/page004.php (keyboard scan codes)
+	; // https://www.atariarchives.org/c3ba/page004.php (keyboard scan codes)
 
 
 	jsr seteyeleftram
