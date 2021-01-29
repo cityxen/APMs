@@ -1,4 +1,5 @@
 vasm6502 Apollol.asm -c02 -chklabels -nocase -Fvasm=1 -DBuildAP2=1 -Fbin -o "APOLLOL" # -L listing.txt
+
 retval=$?
 echo $retval
 if [ $retval -eq 0 ]
