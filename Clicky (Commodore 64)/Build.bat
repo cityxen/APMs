@@ -1,3 +1,2 @@
-copy Kickass.cfg E:\pc_tools\dev-tools\commodore64\KickAssembler\Kickass.cfg
-java -jar E:\pc_tools\dev-tools\commodore64\KickAssembler\KickAss.jar Clicky.asm
-xcopy * X:\temp\prg_xfer\Clicky\* /Y /S
+copy Kickass.cfg E:\retro-dev-tools\dev-tools\commodore64\KickAssembler\Kickass.cfg
+java -jar E:\retro-dev-tools\dev-tools\commodore64\KickAssembler\KickAss.jar Clicky.asm
