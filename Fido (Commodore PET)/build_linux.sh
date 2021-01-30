@@ -1,3 +1,3 @@
 dir=$(dirname 0)
-cp KickAss-linux.cfg $dir/../../retro-dev-tools/dev-tools/commodore64/KickAssembler/KickAss.cfg
+genkickass-script.py -t PET -o prg_files -m true -s true -l "RETRO_DEV_LIB"
 kickass Fido.asm
