@@ -19,6 +19,8 @@
 .const mouth     = screenram+314
 .const colorram  = $9600  //  - $97FF
 
+#import "Constants.asm"
+
 //////////////////////////////////////////////////////////////////////////////////////
 // File stuff
 .file [name="victoria.prg", segments="Main"]

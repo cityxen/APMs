@@ -1,4 +1,4 @@
-copy Kickass.cfg E:\pc_tools\dev-tools\commodore64\KickAssembler\Kickass.cfg
-java -jar E:\pc_tools\dev-tools\commodore64\KickAssembler\KickAss.jar Victoria.asm
-xcopy * X:\temp\prg_xfer\Victoria\* /Y /S
-
+@echo off
+echo Build Script: Building %1
+start /b genkickass-script.bat -t VIC20 -o prg_files -m true -s true -l "RETRO_DEV_LIB"
+KickAss.bat %1
