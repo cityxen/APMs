@@ -21,20 +21,82 @@ NewLine equ $FC62	;CR - Carriage Return to Screen
 	
 	jsr NewLine			;Start a new line
 
-	
-	;Load in the address of the Message into the zero page
 	lda #>HelloWorld
-	sta $41				;H Byte
+	sta $41
 	lda #<HelloWorld
-	sta $40				;L Byte
-		
-	jsr PrintStr		;Show to the screen		
+	sta $40
+	jsr PrintStr
+
+	lda #>HelloWorld1
+	sta $41
+	lda #<HelloWorld1
+	sta $40
+	jsr PrintStr
+
+	lda #>HelloWorld2
+	sta $41
+	lda #<HelloWorld2
+	sta $40
+	jsr PrintStr
+
+	lda #>HelloWorld3
+	sta $41
+	lda #<HelloWorld3
+	sta $40
+	jsr PrintStr
+
+	lda #>HelloWorld4
+	sta $41
+	lda #<HelloWorld4
+	sta $40
+	jsr PrintStr
+	lda #0
+
+	lda #>HelloWorld5
+	sta $41
+	lda #<HelloWorld5
+	sta $40
+	jsr PrintStr
+
+	lda #>HelloWorld6
+	sta $41
+	lda #<HelloWorld6
+	sta $40
+	jsr PrintStr
 	
-	lda #0				;Return to Basic
+	lda #>HelloWorld7
+	sta $41
+	lda #<HelloWorld7
+	sta $40
+	jsr PrintStr
+
+	lda #>HelloWorld8
+	sta $41
+	lda #<HelloWorld8
+	sta $40
+	jsr PrintStr
+loop:
+	jmp loop
 	rts
 	
 HelloWorld:				;255 terminated string
-	db "Hello World",255
+	db "Do you remember? ",255
+HelloWorld1:				;255 terminated string
+	db "the old days? ",255
+HelloWorld2:				;255 terminated string
+	db "How we used to have fun. ",255	
+HelloWorld3:				;255 terminated string
+	db "How we played in the ",255		
+HelloWorld4:				;255 terminated string
+	db "backyard. ",255			
+HelloWorld5:				;255 terminated string
+	db "You would throw that ",255			
+HelloWorld6:				;255 terminated string
+	db "stick. I would go get ",255				
+HelloWorld7:				;255 terminated string
+	db "it. You petted me and ",255
+HelloWorld8:				;255 terminated string
+	db "called me a good boy. ",255				
 	
 	
 PrintChar:

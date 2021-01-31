@@ -1,5 +1,5 @@
 echo "##############################################################################"
-echo "Building Apollol"
+echo "Building APOLLOL"
 vasm6502 Apollol.asm -c02 -chklabels -nocase -Fvasm=1 -DBuildAP2=1 -Fbin -o "APOLLOL" # -L listing.txt
 if [ $? -eq 0 ]; then
     echo "##############################################################################"
