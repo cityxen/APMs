@@ -12,14 +12,14 @@ APMs: ( In order they were created )
 | Amy  | Good | Commodore Amiga | AMOS Pro/Amiga500 | Mostly Done |
 | Pokey | Good | Atari 800 XL | VASM6502/Altirra64 | Mostly Done |
 | Victoria | Good | Commodore VIC-20 | KickAssembler/VICE | WIP |
-| Kids | Good | Various Handheld Electronics | ? | ? |
 | Fido  | Good | Commodore PET | KickAssembler/VICE |  WIP |
+| Miss DOS | Evil | MS DOS  | Borland Turbo C++ (DOS) | WIP |
+| DOS Clone | Evil | MS DOS/PC | Borland Turbo C++ (DOS) | WIP |
+| Kids | Good | Various Handheld Electronics | ? | ? |
 | Stella| Good | Atari ST | ? | ? |
 | Apollol | Good | Apple IIe   | VASM6502/AppleWin | WIP |
 | Tex    | Good | TI99/4a   | ? | ? |
 | Benny | Good | BBC Micro | ? | ? |
-| Miss DOS | Evil | MS DOS  | ? | ? |
-| DOS Clone | Evil | MS DOS/PC | ? | ? |
 | Mister Mister | Evil | Shapeshifter | ? | ? |
 | Evil Clicky | Evil | Ultimate64 FPGA | KickAssembler/VICE | ? |
 | ? | Neutral | Raspberry Pi | ? Python (most likely) | ? |
