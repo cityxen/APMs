@@ -13,7 +13,7 @@ APMs: ( In order they were created )
 | Pokey | Good | Atari 800 XL | VASM6502/Altirra64 | Mostly Done |
 | Victoria | Good | Commodore VIC-20 | KickAssembler/VICE | WIP |
 | Fido  | Good | Commodore PET | KickAssembler/VICE |  WIP |
-| Miss DOS | Evil | MS DOS  | Borland Turbo C++ (DOS) | WIP |
+| Miss DOS | Evil | MS DOS/PC | Borland Turbo C++ (DOS) | WIP |
 | DOS Clone | Evil | MS DOS/PC | Borland Turbo C++ (DOS) | WIP |
 | Apollol | Good | Apple IIe   | VASM6502/AppleWin | WIP |
 | Evil Clicky | Evil | Ultimate64 FPGA | KickAssembler/VICE | ? |
