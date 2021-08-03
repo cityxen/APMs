@@ -15,14 +15,14 @@ APMs: ( In order they were created )
 | Fido  | Good | Commodore PET | KickAssembler/VICE |  WIP |
 | Miss DOS | Evil | MS DOS  | Borland Turbo C++ (DOS) | WIP |
 | DOS Clone | Evil | MS DOS/PC | Borland Turbo C++ (DOS) | WIP |
+| Apollol | Good | Apple IIe   | VASM6502/AppleWin | WIP |
+| Evil Clicky | Evil | Ultimate64 FPGA | KickAssembler/VICE | ? |
+| The Baker | Neutral | Raspberry Pi | ? Python (most likely) | ? |
 | Kids | Good | Various Handheld Electronics | ? | ? |
 | Stella| Good | Atari ST | ? | ? |
-| Apollol | Good | Apple IIe   | VASM6502/AppleWin | WIP |
 | Tex    | Good | TI99/4a   | ? | ? |
 | Benny | Good | BBC Micro | ? | ? |
 | Mister Mister | Evil | Shapeshifter | ? | ? |
-| Evil Clicky | Evil | Ultimate64 FPGA | KickAssembler/VICE | ? |
-| ? | Neutral | Raspberry Pi | ? Python (most likely) | ? |
 | Linux | Neutral | Linux PC | gcc | ? |
 | Teddy | Neutral | Commodore +4/16) | ? | ? |
 | Trish | Neutral | TRS80 CoCo | ? | ? |
