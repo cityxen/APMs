@@ -18,12 +18,12 @@ APMs: ( In order they were created )
 | Apollol | Good | Apple IIe   | VASM6502/AppleWin | WIP |
 | Evil Clicky | Evil | Ultimate64 FPGA | KickAssembler/VICE | ? |
 | The Baker | Neutral | Raspberry Pi | ? Python (most likely) | ? |
+| Linus | Neutral | Linux PC | gcc | ? |
 | Kids | Good | Various Handheld Electronics | ? | ? |
 | Stella| Good | Atari ST | ? | ? |
 | Tex    | Good | TI99/4a   | ? | ? |
 | Benny | Good | BBC Micro | ? | ? |
 | Mister Mister | Evil | Shapeshifter | ? | ? |
-| Linux | Neutral | Linux PC | gcc | ? |
 | Teddy | Neutral | Commodore +4/16) | ? | ? |
 | Trish | Neutral | TRS80 CoCo | ? | ? |
 | Speckles | Neutral | Spectrum ZX | ? | ? |
