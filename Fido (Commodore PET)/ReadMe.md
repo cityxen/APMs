@@ -1,3 +1,5 @@
+# 🌆🅲🅸🆃🆈🆇🅴🅽☯️ 8 & 16 bit hijinx and programming!
+
 # Fido
 
 Fido is a super AI Commodore PET, written in KickAssembler for the Commodore PET. (Programming by Deadline)

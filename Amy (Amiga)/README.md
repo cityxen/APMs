@@ -1,3 +1,5 @@
+# 🌆🅲🅸🆃🆈🆇🅴🅽☯️ 8 & 16 bit hijinx and programming!
+
 # Amy
 
 Amy is a super AI Amiga, written in AMOS Pro 2. (Graphics and programming by Deadline)

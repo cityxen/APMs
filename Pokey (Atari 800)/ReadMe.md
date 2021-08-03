@@ -1,3 +1,5 @@
+# 🌆🅲🅸🆃🆈🆇🅴🅽☯️ 8 & 16 bit hijinx and programming!
+
 # Pokey
 
 Pokey is a super AI Atari 800 XL, written in MADS. (Programming by Deadline)

@@ -1,3 +1,5 @@
+# 🌆🅲🅸🆃🆈🆇🅴🅽☯️ 8 & 16 bit hijinx and programming!
+
 # Clicky
 
 Clicky is a super AI Commodore 64, written in KickAssembler for the Commodore 64. (Graphics and programming by Deadline)

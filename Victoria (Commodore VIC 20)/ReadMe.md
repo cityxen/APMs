@@ -1,3 +1,5 @@
+# 🌆🅲🅸🆃🆈🆇🅴🅽☯️ 8 & 16 bit hijinx and programming!
+
 # Victoria
 
 Victoria is a super AI Commodore VIC 20, written in KickAssembler for the Commodore VIC 20. (Programming by Deadline)
