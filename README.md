@@ -10,6 +10,7 @@ APMs: ( In order they were created )
 | --- | --- | --- | --- | 
 | Clicky| Good | Commodore 64 | KickAssembler/VICE |
 | Amy  | Good | Commodore Amiga | AMOS Pro/Amiga500 |
+| Trish | Neutral | TRS80 CoCo | MOCKUP Only (For now) |
 | Pokey | Good | Atari 800 XL | VASM6502/Altirra64 |
 | Victoria | Good | Commodore VIC-20 | KickAssembler/VICE |
 | Fido  | Good | Commodore PET | KickAssembler/VICE |
@@ -25,7 +26,6 @@ APMs: ( In order they were created )
 | Benny | Good | BBC Micro | ? |
 | Mister Mister | Evil | Shapeshifter | ? |
 | Teddy | Neutral | Commodore +4/16) | ? |
-| Trish | Neutral | TRS80 CoCo | ? |
 | Speckles | Neutral | Spectrum ZX | ? |
 | Mackayla | Neutral | Apple Macintosh | ? |
 | Angus  | Neutral | Amstrad CPC 464 | ? |
