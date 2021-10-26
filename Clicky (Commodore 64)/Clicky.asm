@@ -9,6 +9,9 @@
 // 
 // History:
 //
+// October 22, 2021:
+//      - Added Power Pack Face mode
+//
 // March 27, 2021:
 //      - Added UPS9600 Serial Port driver (to establish remote control of Clicky)
 //      - TODO: Add Parse of serial input to set expression/mouth
@@ -35,6 +38,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////////
 #import "../../Commodore64_Programming/include/Constants.asm"
+#import "../../Commodore64_Programming/include/DrawPetMateScreen.asm"
 .segment Sprites [allowOverlap]
 *=$2000 "CLICKY EYES"
 #import "Clicky_Eyes_Defs.asm"
@@ -42,6 +46,7 @@
 *=$3000 "CLICKY MOUTHS"
 #import "Clicky_Mouths_Data.asm"
 #import "Clicky_Decorations_Data.asm"
+#import "Clicky_Power_Pack_Face.asm"
 //////////////////////////////////////////////////////////////////////////////////////
 // File stuff
 .file [name="clicky.prg", segments="Main,Sprites"]
@@ -73,6 +78,7 @@ ups9600_Present:
 .byte 0
 // * = $0830 "MAIN PROGRAM"
 init:
+    jmp init_continue
     //////////////////////////////////////////////////////////////////////////////////////
     // up9600 initialization
     lda #$ff
@@ -88,6 +94,7 @@ bad_load:
     sta zp_tmp_lo
     jsr zprint 
     rts // exit program
+
 good_load:
     lda #>goodload_txt
     sta zp_tmp_hi
@@ -704,10 +711,31 @@ sleep_mode_turn_on:
     jsr set_expression
     jmp mainloop
 //////////////////////////////////////////////////
-// F4
+// F4 (Toggle Power Pack Mode)
 !keycheck:
     cmp #$8a
     bne !keycheck+
+    inc modedata
+    lda modedata
+    and #$01
+    sta modedata
+    cmp #$01
+    bne ppmode_off
+
+ppmode_on:
+
+    jsr draw_power_pack_face
+    lda #$00
+    sta SPRITE_ENABLE
+    
+    jmp mainloop
+
+ppmode_off:
+    lda #$93
+    jsr KERNAL_CHROUT
+    lda #$ff
+    sta SPRITE_ENABLE
+
     jmp mainloop
 //////////////////////////////////////////////////
 // F5
@@ -1221,3 +1249,11 @@ end_set_expression:
     cpx #$09
     bne !mloop-
 }
+
+draw_power_pack_face:
+    DrawPetMateScreen(screen_001)
+    rts
+
+modedata:
+.byte 0,0,0,0,0,0,0,0
+

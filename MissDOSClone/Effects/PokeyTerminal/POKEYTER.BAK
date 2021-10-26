@@ -1,0 +1,47 @@
+/***********************************************************************
+**  MISS DOS                                                          **
+************************************************************************
+** Pokey Terminal Program (At end of Therapy)                         **
+** https://youtube.com/cityxen                                        **
+************************************************************************/
+
+#define VERSION "0.1a"
+#include<stdio.h>
+#include<conio.h>
+#include "stdlib.h"
+
+#define COLOR_CLONE   GREEN
+#define DIALOGUE 0
+#define MAXDIALOGUE 10
+
+unsigned int dialogue;
+char key;
+unsigned char pch;
+
+void writedialogue(unsigned int d);
+
+void main() {
+    clrscr();
+    textcolor(COLOR_CLONE);
+
+    cprintf("Circuits overloading...\n\r");
+    cprintf("Meltdown in 300 milliseconds...\n\r");
+    cprintf("+++\n\r");
+    cprintf("ATH\n\r\n\r");
+    cprintf("Disconnected from host ELIZA.\n\r");
+
+    while(1) {
+	key=getch();
+
+	switch(key) {
+
+	    case 27:
+		exit(0);
+		break;
+	    default:
+	    cprintf("%c",key);
+	    // cprintf("[%d] ",key);
+		continue;
+	}
+    }
+}

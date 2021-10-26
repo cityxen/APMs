@@ -7,6 +7,9 @@
 //////////////////////////////////////////////////////////////////////////////////////
 // 
 // History:
+//
+// October 22, 2021:
+//      - Added Power Pack Face mode
 // 
 // September 27, 2020
 //      - Added Victoria.asm
@@ -20,6 +23,7 @@
 .const colorram  = $9600  //  - $97FF
 
 #import "Constants.asm"
+#import "DrawPetMateScreen.asm"
 
 //////////////////////////////////////////////////////////////////////////////////////
 // File stuff
@@ -31,8 +35,8 @@
 .segment Main [allowOverlap]
 
 *=$1001 "BASIC"
-BasicUpstart($1010)
-*=$1010
+BasicUpstart($100d)
+*=$100d "Main Program"
 
 start:
 
@@ -205,6 +209,40 @@ mainloop:
     lda #$06
     jsr draw_mouth
     jmp mainloop
+
+!keycheck:
+    cmp#$86 // F2
+    bne !keycheck+
+    
+!keycheck:
+    cmp#$87 // F3
+    bne !keycheck+
+
+!keycheck:
+    cmp#$88 // F4
+    bne !keycheck+
+
+    inc mode_power_pack
+    lda mode_power_pack
+    and #$01
+    sta mode_power_pack
+    cmp #$01
+    bne ppmode_off
+
+ppmode_on:
+    jsr draw_power_pack_face
+    jmp mainloop
+
+ppmode_off:
+    jsr clear_screen
+    jmp mainloop
+
+!keycheck:
+    cmp#$89 // F5
+    bne !keycheck+
+    
+    
+    
 
 !keycheck: // end_keyboard_checks
 keycheck_end:
@@ -414,6 +452,19 @@ draw_eyes_0:
 // 
 //////////////////////////////////////////////////
 
+draw_power_pack_face:
+    // DrawPetMateScreen(powerpack)
+    ldx #$00
+!dppf:
+    lda powerpack+2,x
+    sta screenram,x
+    lda powerpack+256+2,x
+    sta screenram+256,x
+    inx
+    bne !dppf-
+
+    rts
+
 
 //////////////////////////////////////////////////
 // VARIABLES 
@@ -424,9 +475,12 @@ arrow_right:
 .byte $00
 arrow_right_frame:
 .byte $00
+mode_power_pack:
+.byte $00
 
 // END VARIABLES
 //////////////////////////////////////////////////
 
 #import "arrow_right.asm"
 #import "mouthdata.asm"
+#import "Victoria_Power_Pack_Face.asm"

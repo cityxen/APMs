@@ -7,16 +7,24 @@
 //////////////////////////////////////////////////////////////////////////////////////
 // 
 // History:
-// 
+//
+// October 22, 2021:
+//      - Added Power Pack Face mode
+//
 // September 13, 2020
 //      - Added Fido.asm
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-.const screenram = $8000
-.const eye_left  = screenram+135+160
-.const eye_right = screenram+145+160
-.const mouth     = screenram+536
+.const SCREEN_RAM       = $8000
+.const eye_left         = SCREEN_RAM+135+160
+.const eye_right        = SCREEN_RAM+145+160
+.const mouth            = SCREEN_RAM+536
+.const COLOR_RAM        = $2000
+.const BACKGROUND_COLOR = $7ffe
+.const BORDER_COLOR     = $7fff
+
+#import "DrawPetMateScreen.asm"
 
 //////////////////////////////////////////////////////////////////////////////////////
 // File stuff
@@ -51,6 +59,8 @@ mainloop:
 ////////////////
     jsr $ffe4 // Check keyboard
     clc
+    beq mainloop
+
 !keycheck: // DEFAULT EXPRESSION
     cmp #$20 // SPACE
     bne !keycheck+
@@ -160,6 +170,13 @@ mainloop:
     jmp mainloop
 
 */
+
+!keycheck: // P
+    cmp #$50
+    bne !keycheck+
+    DrawPetMateScreen(power_pack_face)
+    jmp mainloop
+
 // MOUTH KEYS
 !keycheck: // clear mouth
     cmp #$41 // A
@@ -314,4 +331,12 @@ draw_eyes:
     sta eye_right
     rts
 
+draw_power_pack_face:
+    DrawPetMateScreen(power_pack_face)
+    rts
+
 #import "mouthdata.asm"
+
+
+
+#import "Fido_Power_Pack_Face.asm"
