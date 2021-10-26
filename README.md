@@ -16,13 +16,13 @@ APMs: ( In order they were created )
 | Fido  | Good | Commodore PET | KickAssembler/VICE |
 | Miss DOS | Evil | MS DOS/PC | Borland Turbo C++ (DOS) |
 | DOS Clone | Evil | MS DOS/PC | Borland Turbo C++ (DOS) |
+| Stella| Good | Atari ST | MOCKUP Only (For now) |
+| Kids | Good | Various Handheld Electronics | (Handheld electronics and toys) |
 | Tex    | Good | TI99/4a   | TI Extended BASIC |
 | Apollol | Good | Apple IIe   | VASM6502/AppleWin |
 | Evil Clicky | Evil | Ultimate64 FPGA | KickAssembler/VICE |
 | The Baker | Neutral | Raspberry Pi | ? Python (most likely) |
 | Linus | Neutral | Linux PC | gcc |
-| Kids | Good | Various Handheld Electronics | ? |
-| Stella| Good | Atari ST | ? |
 | Benny | Good | BBC Micro | ? |
 | Mister Mister | Evil | Shapeshifter | ? |
 | Teddy | Neutral | Commodore +4/16) | ? |
