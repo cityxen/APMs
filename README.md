@@ -20,7 +20,7 @@ Factions:
 APMs: ( In order they were created )
 
 | Character | Alignment | 2nd Level Retronic Energy Form | Machine | Toolchain |
-| --- | --- | --- | --- | 
+| --- | --- | --- | --- | --- | 
 | Clicky| Good | SID Sonic | Commodore 64 | KickAssembler/VICE |
 | Amy  | Good | Amazing Amy | Commodore Amiga | AMOS Pro/Amiga500 (+ Unity 3D Model Animation)|
 | Trish | Neutral | ??? | TRS80 CoCo | MOCKUP Only (For now) |
