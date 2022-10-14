@@ -19,27 +19,27 @@ Factions:
 
 APMs: ( In order they were created )
 
-| Character | Alignment | Machine | Toolchain |
+| Character | Alignment | 2nd Level Retronic Energy Form | Machine | Toolchain |
 | --- | --- | --- | --- | 
-| Clicky| Good | Commodore 64 | KickAssembler/VICE |
-| Amy  | Good | Commodore Amiga | AMOS Pro/Amiga500 (+ Unity 3D Model Animation)|
-| Trish | Neutral | TRS80 CoCo | MOCKUP Only (For now) |
-| Pokey | Good | Atari 800 XL | VASM6502/Altirra64 |
-| Victoria | Good | Commodore VIC-20 | KickAssembler/VICE (+ Unity 3D Model Animation)|
-| Fido  | Good | Commodore PET | KickAssembler/VICE |
-| Miss DOS | Evil | MS DOS/PC | Borland Turbo C++ (DOS) |
-| DOS Clone | Evil | MS DOS/PC | Borland Turbo C++ (DOS) |
-| Stella| Good | Atari ST | MOCKUP Only (For now) |
-| Kids | Good | Various Handheld Electronics | (MOCKUP Handheld electronics and toys) |
-| Tex    | Good | TI99/4a   | TI Extended BASIC, (Emulated and MOCKUP(TV)) |
-| Eliza | Neutral | DOS | DIZ ANSI File Animations |
-| Ursula | Evil | DOS | DIZ ANSI File Animations |
-| Dr. Watson | Evil | DOS | DIZ ANSI File Animations |
-| PC Jr. | Neutral | DOS | MOCKUP Only |
-| Scriptly | Evil | Commodore 64 | KickAssembler/VICE (USES CLICKY RESOURCES) |
-| Adam | Good | Coleco Adam | MOCKUP Only |
-| Speckles | Good | Spectrum ZX | MOCKUP Only |
-| Igor | Nuetral (New faction) | Nokia Cell Phone | MOCKUP Only |
+| Clicky| Good | SID Sonic | Commodore 64 | KickAssembler/VICE |
+| Amy  | Good | Amazing Amy | Commodore Amiga | AMOS Pro/Amiga500 (+ Unity 3D Model Animation)|
+| Trish | Neutral | ??? | TRS80 CoCo | MOCKUP Only (For now) |
+| Pokey | Good | ANTIC Mod | Atari 800 XL | VASM6502/Altirra64 |
+| Victoria | Good | Storm Stack | Commodore VIC-20 | KickAssembler/VICE (+ Unity 3D Model Animation)|
+| Fido  | Good | Power PET | Commodore PET | KickAssembler/VICE |
+| Miss DOS | Evil | Backup Widow | MS DOS/PC | Borland Turbo C++ (DOS) |
+| DOS Clone | Evil | ??? | MS DOS/PC | Borland Turbo C++ (DOS) |
+| Stella | Good | ??? | Atari ST | MOCKUP Only (For now) |
+| Kids | Good | ??? | Various Handheld Electronics | (MOCKUP Handheld electronics and toys) |
+| Tex    | Good | Bus Stop | TI99/4a   | TI Extended BASIC, (Emulated and MOCKUP(TV)) |
+| Eliza | Neutral | ??? | DOS | DIZ ANSI File Animations |
+| Ursula | Evil | ??? | DOS | DIZ ANSI File Animations |
+| Dr. Watson | Evil | ??? | DOS | DIZ ANSI File Animations |
+| PC Jr. | Neutral | ??? | DOS | MOCKUP Only |
+| Scriptly | Evil | ??? | Commodore 64 | KickAssembler/VICE (USES CLICKY RESOURCES) |
+| Adam | Good | Boots Wang / The 8 Bat Guy | Coleco Adam | MOCKUP Only |
+| Speckles | Good | ??? | Spectrum ZX | MOCKUP Only |
+| Igor | Nuetral (New faction) | ??? | Nokia Cell Phone | MOCKUP Only |
 
 APMs planned:
 
