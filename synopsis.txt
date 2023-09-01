@@ -8,8 +8,6 @@ Inception Level 1 (CityXen YouTube Channel)
 Characters:
 Deadline    - Youtuber making great retro gaming, and vintage computer videos
 Xamfear     - Youtuber making great retro gaming, and vintage computer videos
-Exidor      - Youtuber making great retro gaming, and vintage computer videos
-Crash       - Youtuber making great retro gaming, and vintage computer videos
 
 (note: Helmet Guy and Eagull do not exist.
        CityXen is the YouTube channel.
@@ -20,12 +18,10 @@ Inception Level 2 (CityXen is an actual City named Xen, CIA exists)
 
 Deadline      - Research and Development, AKA D
 Xamfear       - Field Agent 008 AKA X
-Crash         - CIA AI Transport Service (CATS) AKA C
-Exidor        - Radio Shock Jock on FM 1990 AKA E
-Helmet Guy    - AKA Helmet Reaper. Master software coder and AI Hunter, he does not like Clicky and tries to deactivate him,
+xSurvivor7x   - (Helmet Guy) AKA Helmet Reaper. Master software coder and AI Hunter, he does not like Clicky and tries to deactivate him,
                 brings Eagull parts and computers
-Eagull        - Master of computer hardware and human biology, and experiments with combining the two
-Mr. Robot     - Cyborg created by the US Government, able to infiltrate enemy strongholds undetected, 
+xSurvivor7x   - (EAGULL) Master of computer hardware and human biology, and experiments with combining the two
+xSurvivor7x   - (ROBOGUY 5000) Cyborg created by the US Government, able to infiltrate enemy strongholds undetected, 
 
 (note: City Xen is the City in the story.
        Commodore Intelligence Agency exists, and YouTube characters from Inception Level 1 transfer into the roles above.
@@ -77,7 +73,6 @@ Helmet Guy has a "Magic Scythe" with 5 1/4, 3 1/2 and CD ROM discs.
 The discs contain special code to subdue Ms DOS's clones. One simply has to insert the
 media into a clone, or other machine, for it to take affect.
 
-
 QUOTES:
 
 "When facing unknown Artificial Intelligences, ensure the trojan gets inserted post haste." - Helmet Guy
@@ -99,5 +94,5 @@ they will then do our bidding." - Helmet Guy
 
 "This circuit does not adhere to specifications" - Eagull
 
-"Hey, how's it going?" - Mr. Robot
+"Hey, how's it going?" - Roboguy 5000
 
