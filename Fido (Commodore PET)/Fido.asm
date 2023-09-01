@@ -105,20 +105,23 @@ mainloop:
     ldx #$00
     jsr set_expression
     jmp mainloop
+
+*/
+
 !keycheck:
     cmp #$31 // 1
     bne !keycheck+
-    lda #$06
-    ldx #$00
-    jsr set_expression
+    lda #$30
+    jsr draw_eyes_2
     jmp mainloop
 !keycheck:
     cmp #$32 // 2
     bne !keycheck+
-    lda #$07
-    ldx #$00
-    jsr set_expression
+    lda #$3dO
+    jsr draw_eyes_2
     jmp mainloop
+
+/*
 !keycheck:
     cmp #$33 // 3
     bne !keycheck+
@@ -327,6 +330,7 @@ draw_mouth_continue:
 
 draw_eyes:
     lda #$30
+draw_eyes_2:
     sta eye_left
     sta eye_right
     rts
