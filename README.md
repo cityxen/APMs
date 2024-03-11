@@ -40,7 +40,8 @@ APMs: ( In order they were created )
 | Adam | Good | Boots Wang / The 8 Bat Guy | Coleco Adam | MOCKUP Only |
 | Speckles | Good | Unknown | Spectrum ZX | MOCKUP Only |
 | Igor | Nuetral (New faction) | Unknown | Nokia Cell Phone | MOCKUP Only |
-| 80HD (Tentative) | Good | Unknown | Commodore 128 | KickAssembler/VICE |
+| 80HD | Good | Unknown | Commodore 128 | KickAssembler/VICE |
+| STA-$0C | Good | Unkown | Commodore SX-64 | KickAssembler/VICE |
 
 APMs planned:
 
