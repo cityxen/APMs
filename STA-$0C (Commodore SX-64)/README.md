@@ -36,4 +36,4 @@ FIRE+DIRECTION: Changes mouth
 
 ## Images:
 
-![STA_0C](x)
+![STA_0C](https://github.com/cityxen/APMs/blob/master/STA-%240C%20(Commodore%20SX-64)/images/sta-0c.jpg)
