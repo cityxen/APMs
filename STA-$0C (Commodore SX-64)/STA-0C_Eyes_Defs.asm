@@ -3,7 +3,7 @@
 .const STA_0C_EYES_BLINK      = $82
 .const STA_0C_EYES_SOLID_LIL  = $83
 .const STA_0C_EYES_CHEEKY     = $84
-.const STA_0C_EYES_CHEEKY2    = $85
+.const STA_0C_EYES_CHEEKY2    = $84
 .const STA_0C_EYES_BROW_1L    = $86
 .const STA_0C_EYES_BROW_1R    = $87
 .const STA_0C_EYES_BROW_2L    = $88
@@ -18,7 +18,6 @@
 .const STA_0C_EYES_SAD_RIGHT  = $91
 .const STA_0C_EYES_ZZ_1       = $92
 .const STA_0C_EYES_ZZ_2       = $93
-
 
 .const STA_0C_EYE_L_SP      = $7F8
 .const STA_0C_EYE_R_SP      = $7F9

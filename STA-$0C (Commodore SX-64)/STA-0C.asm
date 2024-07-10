@@ -291,70 +291,70 @@ mainloop:
 !keycheck: // T
     cmp #$54
     bne !keycheck+
-    lda #$0F
+    lda #$06
     ldx #$00
     jsr set_expression
     jmp mainloop
 !keycheck:
     cmp #$31 // 1
     bne !keycheck+
-    lda #$06
+    lda #$07
     ldx #$00
     jsr set_expression
     jmp mainloop
 !keycheck:
     cmp #$32 // 2
     bne !keycheck+
-    lda #$07
+    lda #$08
     ldx #$00
     jsr set_expression
     jmp mainloop
 !keycheck:
     cmp #$33 // 3
     bne !keycheck+
-    lda #$08
+    lda #$09
     ldx #$00
     jsr set_expression
     jmp mainloop
 !keycheck:
     cmp #$34 // 4
     bne !keycheck+
-    lda #$09
+    lda #$0a
     ldx #$00
     jsr set_expression
     jmp mainloop
 !keycheck: 
     cmp #$35 // 5
     bne !keycheck+
-    lda #$0A
+    lda #$0b
     ldx #$00
     jsr set_expression
     jmp mainloop
 !keycheck:
     cmp #$36 // 6
     bne !keycheck+
-    lda #$0B
+    lda #$0c
     ldx #$00
     jsr set_expression
     jmp mainloop
 !keycheck:
     cmp #$37 // 7
     bne !keycheck+
-    lda #$0C
+    lda #$0d
     ldx #$00
     jsr set_expression
     jmp mainloop
 !keycheck:
     cmp #$38 // 8
     bne !keycheck+
-    lda #$0D
+    lda #$0e
     ldx #$00
     jsr set_expression
     jmp mainloop
 !keycheck:
     cmp #$39 // 9
     bne !keycheck+
-    lda #$0E
+    lda #$0f
     ldx #$00
     jsr set_expression
     jmp mainloop
@@ -364,7 +364,7 @@ mainloop:
     cmp #$41 // A
     bne !keycheck+
     lda #$00
-    ldx #$01
+    ldx #$02
     jsr set_expression
     jmp mainloop
 
@@ -605,7 +605,7 @@ f7_chg_colors_loop_1:
 
 !keycheck: // end_keyboard_checks
 
-// Joystick port 2 control of Clicky
+// Joystick port 2 control
     lda 56320
 // Middle, no move 127
 // UP
@@ -921,6 +921,54 @@ set_expression:
     sta STA_0C_BROW_R_SP
     jmp set_exp_mouth
 !set_expression_next:
+    cmp #$07 // eyes $07
+    bne !set_expression_next+
+    lda #STA_0C_EYES_X_LEFT
+    sta STA_0C_EYE_L_SP
+    lda #STA_0C_EYES_X_RIGHT
+    sta STA_0C_EYE_R_SP
+
+    lda #STA_0C_EYES_BROW_2L
+    sta STA_0C_BROW_L_SP
+    lda #STA_0C_EYES_BROW_2R
+    sta STA_0C_BROW_R_SP
+    jmp set_exp_mouth
+
+    
+!set_expression_next:
+
+    cmp #$09 // eyes $09
+    bne !set_expression_next+
+    lda #STA_0C_EYES_BLINK  
+    sta STA_0C_EYE_L_SP
+    lda #STA_0C_EYES_BLINK  
+    sta STA_0C_EYE_R_SP
+
+    lda #STA_0C_EYES_BROW_2L
+    sta STA_0C_BROW_L_SP
+    lda #STA_0C_EYES_BROW_2R
+    sta STA_0C_BROW_R_SP
+    jmp set_exp_mouth
+    
+!set_expression_next:
+
+    cmp #$0a // eyes $0a
+    bne !set_expression_next+
+    lda #STA_0C_EYES_SOLID_LIL
+    sta STA_0C_EYE_L_SP
+    lda #STA_0C_EYES_SOLID_LIL
+    sta STA_0C_EYE_R_SP
+
+    lda #STA_0C_EYES_BROW_2L
+    sta STA_0C_BROW_L_SP
+    lda #STA_0C_EYES_BROW_2R
+    sta STA_0C_BROW_R_SP
+    jmp set_exp_mouth
+!set_expression_next:
+
+
+set_exp_brow:
+
 
 set_exp_mouth:
     txa
