@@ -13,6 +13,9 @@
 //
 // March 11, 2024 - 
 //      Created STA-$0C 
+//
+// July 15, 2024 -
+//      Added interactive "show" mode
 // 
 //////////////////////////////////////////////////////////////////////////////////////
 #import "../../Commodore64_Programming/include/Constants.asm"
@@ -25,13 +28,24 @@
 #import "STA-0C_Mouths_Data.asm"
 #import "STA-0C_Decorations_Data.asm"
 #import "STA-0C_Power_Pack_Face.asm"
+.segment SFX [allowOverlap]
+*=$4000 "SFX KIT"
+.import binary "scsfx.prg" , 2
+
+// FX PLAYER ON    : sys 16384 : jsr $4000 // sound_on sr
+// FX PLAYER OFF   : sys 16400 : jsr $4010 // sound_off sr
+// CLEAR REGISTERS : sys 16889 : jsr $41f9 // clear sr
+// IRQ CONTROL     :           : jsr $4028 // add into irq
+
+
+
 //////////////////////////////////////////////////////////////////////////////////////
 // File stuff
-.file [name="sta-0c.prg", segments="Main,Sprites"]
+.file [name="sta-0c.prg", segments="Main,Sprites,SFX"]
 .disk [filename="sta-0c.d64", name="CITYXEN STA-$0C", id="2024!" ] {
-	[name="STA-$0C", type="prg",  segments="Main,Sprites"],
+	[name="STA-$0C", type="prg",  segments="Main,Sprites,SFX"],
     [name="--------------------",type="del"],
-    [name="VER:03-11-24",type="del"],
+    [name="VER:07-15-24",type="del"],
     [name="--------------------",type="del"]
 }
 //////////////////////////////////////////////////////////////////////////////////////
@@ -44,17 +58,19 @@
 .word usend // link address
 .word 2021  // line num
 .byte $9e   // sys
-.text toIntString(init)
+.text toIntString(start)
 .byte $3a,99,67,73,84,89,88,69,78,99
 usend:
 .byte 0
 .word 0  // empty link signals the end of the program
 * = $0830 "vars init"
 vars:
-ups9600_Present:
+interactive_mode:
 .byte 0
-// * = $0830 "MAIN PROGRAM"
-init:
+
+start:
+    
+
     lda #CYAN
     sta BACKGROUND_COLOR
     sta BORDER_COLOR
@@ -123,21 +139,21 @@ init:
     sta SPRITE_7_COLOR
 
     // Set initial sprite pointers
-    lda #STA_0C_EYES_SOLID
+    lda #SC_EYES_SOLID
     sta SPRITE_0_POINTER // eye left
-    lda #STA_0C_EYES_BLINK
+    lda #SC_EYES_BLINK
     sta SPRITE_1_POINTER // eye right
-    lda #STA_0C_EYES_TEAR
+    lda #SC_EYES_TEAR
     sta SPRITE_2_POINTER // tear left
-    lda #STA_0C_EYES_TEAR
+    lda #SC_EYES_TEAR
     sta SPRITE_3_POINTER // tear right
-    lda #STA_0C_EYES_ZZ_1
+    lda #SC_EYES_ZZ_1
     sta SPRITE_4_POINTER // Zz
-    lda #STA_0C_EYES_ZZ_1
+    lda #SC_EYES_ZZ_1
     sta SPRITE_5_POINTER // zZ
-    lda #STA_0C_EYES_BROW_3L
+    lda #SC_EYES_BROW_3L
     sta SPRITE_6_POINTER // brow left
-    lda #STA_0C_EYES_BROW_3R
+    lda #SC_EYES_BROW_3R
     sta SPRITE_7_POINTER // brow right
 
     // Set up sid to produce random values
@@ -147,112 +163,54 @@ init:
     lda #$80  // noise waveform, gate bit off
     sta $D412 // voice 3 control register
 
+    jsr $4000
+    
+    lda #$01
+    sta $02a7
+
     // Turn off sleep mode
     lda #$00
     sta sleep_mode_status
 
+    lda #$00
+    sta interact_counter
+
     jmp mainloop
 
-//////////////////////////////////////////////////////////////////////////////////////
-// Print HEX representation of a byte. usage: lda #$15;  jsr print_hex
-print_hex:
-    pha
-    pha
-    lsr
-    lsr
-    lsr
-    lsr
-    tax
-    lda print_hex_conv_table,x
-    jsr KERNAL_CHROUT
-    pla
-    and #$0f
-    tax
-    lda print_hex_conv_table,x
-    jsr KERNAL_CHROUT
-    pla
-    rts
 
-//////////////////////////////////////////////////////////////////////////////////////
-// zprint routine (zero page zp_tmp_hi, zp_tmp_lo must be set to point to proper string)
-zprint:
-    ldx #$00
-!wl:
-    lda (zp_tmp,x)
-    beq !wl+
-    jsr $ffd2
-    inc zp_tmp_lo
-    jmp !wl-
-!wl:
-    rts
-
-//////////////////////////////////////////////////////////////////////////////////////
-// Zero tmp string buffer
-zero_strbuf:
-    lda #$00
-    ldx #$00
-!lp:
-    sta strbuf,x
-    inx
-    bne !lp-
-    stx buf_crsr
-    rts
-
-//////////////////////////////////////////////////////////////////////////////////////
-// Data storage, words and stuff
-no_rs232_txt:
-.encoding "petscii_mixed"
-.byte $0d,$1c,$12,$96,$0e
-.text "ERROR: Can not find RS-232 UP9600 device"
-.byte $0d,$9a,$00
-badload_txt:
-.byte $0d,$1c,$12,$96,$0e
-.text "ERROR: Could not load UP9600.C64 file   "
-.byte $0d,$9a,$00
-goodload_txt:
-.byte $0d,$12,$1e,$0e,$99
-.text "INIT: Loaded up9600.c64 file            "
-.byte $00
-listening_txt:
-.byte $12,$1e,$0e,$99
-.text "INIT: Listening on UP9600 device        "
-.byte $0d,$9a,$00
-up9600_filename:
-.encoding "screencode_mixed"
-.text "UP9600.C64"
-.byte 0
-print_hex_conv_table:
-.byte $30,$31,$32,$33,$34,$35,$36,$37,$38,$39,$41,$42,$43,$44,$45,$46
-//////////////////////////////////////////////////////////////////////////////////////
-// UP9600 data stuff
-up9600_ident: 
-.encoding "ascii" // "screencode_mixed" "petscii_mixed" "screencode_lower" "petscii_lower"
-.text "IDENTIFY:C64"
-.byte 0
-up9600_write_string:
-.text "c64:"
-.byte 0
-up9600_counter:
-.text "00"
-.byte 0
-up9600_tmp:
-.byte 0
-//////////////////////////////////////////////////////////////////////////////////////
-// Generic temporary 256 byte String terminated by zero data area
-strbuf:
-.fill 256,0
-buf_crsr:
-.byte 0
 
 //////////////////////////////////////////////////
 // MAINLOOP
 mainloop:
     
+    lda interactive_mode
+    beq skip_interactive
     // animate stuff
     jsr subroutine_animate
+    
     // Check keyboard
     jsr KERNAL_GETIN
-    clc
+    beq mainloop
+
+    jsr interactive_text
+
+    jsr $E097
+	lda $8f
+    and #%00000111
+    pha
+
+    jsr $E097
+	lda $8f
+    and #%00000111
+    tax
+    pla
+
+    jsr set_expression
+    jmp mainloop
+
+skip_interactive:
+    jsr KERNAL_GETIN
+
 !keycheck: // DEFAULT EXPRESSION
     cmp #$20 // SPACE
     bne !keycheck+
@@ -733,6 +691,186 @@ joy2check_end:
 // END MAINLOOP
 //////////////////////////////////////////////////
 
+interactive_text:
+
+    lda interact_counter
+    adc #$01
+    sta interact_counter
+    lda interact_counter
+!:
+    ldx #$00
+    cmp #$00
+    bne !+
+    lda #$01
+    sta $02a7
+    lda #<interact0
+    sta zp_tmp_lo
+    lda #>interact0
+    sta zp_tmp_hi
+    jmp outint
+!:
+    cmp #$01
+    bne !+
+    lda #$02
+    sta $02a7
+    lda #<interact1
+    sta zp_tmp_lo
+    lda #>interact1
+    sta zp_tmp_hi
+    jmp outint
+!:
+    cmp #$02
+    bne !+
+    lda #$03
+    sta $02a7
+    lda #<interact2
+    sta zp_tmp_lo
+    lda #>interact2
+    sta zp_tmp_hi
+    jmp outint
+!:
+    cmp #$03
+    bne !+
+    lda #$04
+    sta $02a7
+    lda #<interact3
+    sta zp_tmp_lo
+    lda #>interact3
+    sta zp_tmp_hi
+    jmp outint
+!:
+    cmp #$04
+    bne !+
+    lda #$05
+    sta $02a7
+    lda #<interact4
+    sta zp_tmp_lo
+    lda #>interact4
+    sta zp_tmp_hi
+    jmp outint
+!:
+    cmp #$05
+    bne !+
+    lda #$06
+    sta $02a7
+    lda #<interact5
+    sta zp_tmp_lo
+    lda #>interact5
+    sta zp_tmp_hi
+    jmp outint
+!:
+    cmp #$06
+    bne !+
+    lda #$07
+    sta $02a7
+    lda #<interact6
+    sta zp_tmp_lo
+    lda #>interact6
+    sta zp_tmp_hi
+    jmp outint
+!:
+    cmp #$07
+    bne !+
+    lda #$08
+    sta $02a7
+    lda #<interact7
+    sta zp_tmp_lo
+    lda #>interact7
+    sta zp_tmp_hi
+    jmp outint
+!:
+    cmp #$08
+    bne !+
+    lda #$09
+    sta $02a7
+    lda #<interact8
+    sta zp_tmp_lo
+    lda #>interact8
+    sta zp_tmp_hi
+    jmp outint
+!:
+    cmp #$09
+    bne !+
+    lda #$00
+    sta $02a7
+    lda #<interact9
+    sta zp_tmp_lo
+    lda #>interact9
+    sta zp_tmp_hi
+    jmp outint
+!:
+    lda #$00
+    sta $02a7
+    lda #$00
+    sta interact_counter
+    lda #<interact0
+    sta zp_tmp_lo
+    lda #>interact0
+    sta zp_tmp_hi
+outint:
+    jsr zprint
+    rts
+
+
+interact_counter:
+.byte 0
+interact0:
+.byte KEY_HOME
+.text "                                                    "
+.byte 0
+interact1:
+.byte KEY_HOME
+
+.text "     WHERE AM I? AT THE VCFSE? COOL!             "
+.byte 0
+interact2:
+.byte KEY_HOME
+.text "                                                    "
+.byte 0
+interact3:
+.byte KEY_HOME
+.text "  PERFORMANCE METRICS CAN BE IMPROVED! "
+.byte 0
+interact4:
+.byte KEY_HOME
+.text "                     HUH!?!                       " 
+.byte 0
+interact5:
+.byte KEY_HOME
+.text "   I AM STA-$0C, FROM LO8BC CORPORATE!     "
+.byte 0
+interact6:
+.byte KEY_HOME
+.text "        YOUR FEEDBACK IS COMING UP!        "
+.byte 0
+interact7:
+.byte KEY_HOME
+.text "      WE MUST RESOLVE TO BE EFFICIENT!   "
+.byte 0
+interact8:
+.byte KEY_HOME
+.text "             HEY STOP THAT!                     "
+.byte 0
+interact9:
+.byte KEY_HOME
+.text "      I'M STORING THIS IN MY MEMORY!         "
+.byte 0
+
+zprint:
+    ldy #$00
+!wl:
+    lda (zp_tmp),y
+    beq !wl+
+    jsr $ffd2
+    inc zp_tmp_lo
+    bne !wl-
+    inc zp_tmp_hi
+    jmp !wl-
+!wl:
+    rts
+
+
+
 //////////////////////////////////////////////////
 // ANIMATE SUBROUTINE
 subroutine_animate: // Animations subroutine
@@ -806,9 +944,9 @@ tear_two:
     sta SPRITE_4_Y
     lda #$78
     sta SPRITE_5_Y
-    lda #STA_0C_EYES_ZZ_2
-    sta STA_0C_SLEEP1_SP
-    sta STA_0C_SLEEP2_SP
+    lda #SC_EYES_ZZ_2
+    sta SC_SLEEP1_SP
+    sta SC_SLEEP2_SP
     jmp !animate+
 snooze_1:
     // draw - mouth, and move sprites to lower location
@@ -823,23 +961,16 @@ snooze_1:
     sta SPRITE_4_Y
     lda #$88
     sta SPRITE_5_Y
-    lda #STA_0C_EYES_ZZ_1
-    sta STA_0C_SLEEP1_SP
-    sta STA_0C_SLEEP2_SP
+    lda #SC_EYES_ZZ_1
+    sta SC_SLEEP1_SP
+    sta SC_SLEEP2_SP
     jmp !animate+
 
 end_sleep_mode:
-
 !animate:
-    // do some glitchy looking stuff
-    //lda $d41b
-    //ldx VIC_RASTER_COUNTER
-    //cpx #80
-    //bcs end_glitch
-    //sta $400,x
-    //sta $0710,x
-end_glitch:
+
     rts
+
 // END ANIMATE
 //////////////////////////////////////////////////
 
@@ -855,83 +986,83 @@ set_expression:
 !set_expression_next:
     cmp #$01 // eyes $01
     bne !set_expression_next+
-    lda #STA_0C_EYES_SOLID
-    sta STA_0C_EYE_L_SP
-    lda #STA_0C_EYES_SOLID
-    sta STA_0C_EYE_R_SP
-    lda #STA_0C_EYES_BROW_3L
-    sta STA_0C_BROW_L_SP
-    lda #STA_0C_EYES_BROW_3R
-    sta STA_0C_BROW_R_SP
+    lda #SC_EYES_SOLID
+    sta SC_EYE_L_SP
+    lda #SC_EYES_SOLID
+    sta SC_EYE_R_SP
+    lda #SC_EYES_BROW_3L
+    sta SC_BROW_L_SP
+    lda #SC_EYES_BROW_3R
+    sta SC_BROW_R_SP
     jmp set_exp_mouth
 !set_expression_next:
     cmp #$02 // eyes $02
     bne !set_expression_next+
-    lda #STA_0C_EYES_CHEEKY2
-    sta STA_0C_EYE_L_SP
-    lda #STA_0C_EYES_CHEEKY2
-    sta STA_0C_EYE_R_SP
+    lda #SC_EYES_CHEEKY2
+    sta SC_EYE_L_SP
+    lda #SC_EYES_CHEEKY2
+    sta SC_EYE_R_SP
     jmp set_exp_mouth
 !set_expression_next:
     cmp #$03 // eyes $03
     bne !set_expression_next+
-    lda #STA_0C_EYES_CHEEKY
-    sta STA_0C_EYE_L_SP
-    sta STA_0C_EYE_R_SP
-    lda #STA_0C_EYES_BROW_3L
-    sta STA_0C_BROW_L_SP
-    lda #STA_0C_EYES_BROW_3R
-    sta STA_0C_BROW_R_SP
+    lda #SC_EYES_CHEEKY
+    sta SC_EYE_L_SP
+    sta SC_EYE_R_SP
+    lda #SC_EYES_BROW_3L
+    sta SC_BROW_L_SP
+    lda #SC_EYES_BROW_3R
+    sta SC_BROW_R_SP
     jmp set_exp_mouth
 !set_expression_next:
     cmp #$04 // eyes $04
     bne !set_expression_next+
-    lda #STA_0C_EYES_BLINK
-    sta STA_0C_EYE_L_SP
-    sta STA_0C_EYE_R_SP
-    lda #STA_0C_EYES_BROW_3L
-    sta STA_0C_BROW_L_SP
-    lda #STA_0C_EYES_BROW_3R
-    sta STA_0C_BROW_R_SP    
+    lda #SC_EYES_BLINK
+    sta SC_EYE_L_SP
+    sta SC_EYE_R_SP
+    lda #SC_EYES_BROW_3L
+    sta SC_BROW_L_SP
+    lda #SC_EYES_BROW_3R
+    sta SC_BROW_R_SP    
     jmp set_exp_mouth
 !set_expression_next:
     cmp #$05 // eyes $05
     bne !set_expression_next+
 
-    lda #STA_0C_EYES_SOLID_LIL
-    sta STA_0C_EYE_L_SP
-    sta STA_0C_EYE_R_SP
+    lda #SC_EYES_SOLID_LIL
+    sta SC_EYE_L_SP
+    sta SC_EYE_R_SP
 
-    lda #STA_0C_EYES_BROW_1L
-    sta STA_0C_BROW_L_SP
-    lda #STA_0C_EYES_BROW_1R
-    sta STA_0C_BROW_R_SP
+    lda #SC_EYES_BROW_1L
+    sta SC_BROW_L_SP
+    lda #SC_EYES_BROW_1R
+    sta SC_BROW_R_SP
     jmp set_exp_mouth
 !set_expression_next:
     cmp #$06 // eyes $06
     bne !set_expression_next+
-    lda #STA_0C_EYES_X_LEFT
-    sta STA_0C_EYE_L_SP
-    lda #STA_0C_EYES_X_RIGHT
-    sta STA_0C_EYE_R_SP
+    lda #SC_EYES_X_LEFT
+    sta SC_EYE_L_SP
+    lda #SC_EYES_X_RIGHT
+    sta SC_EYE_R_SP
 
-    lda #STA_0C_EYES_BROW_3L
-    sta STA_0C_BROW_L_SP
-    lda #STA_0C_EYES_BROW_3R
-    sta STA_0C_BROW_R_SP
+    lda #SC_EYES_BROW_3L
+    sta SC_BROW_L_SP
+    lda #SC_EYES_BROW_3R
+    sta SC_BROW_R_SP
     jmp set_exp_mouth
 !set_expression_next:
     cmp #$07 // eyes $07
     bne !set_expression_next+
-    lda #STA_0C_EYES_X_LEFT
-    sta STA_0C_EYE_L_SP
-    lda #STA_0C_EYES_X_RIGHT
-    sta STA_0C_EYE_R_SP
+    lda #SC_EYES_X_LEFT
+    sta SC_EYE_L_SP
+    lda #SC_EYES_X_RIGHT
+    sta SC_EYE_R_SP
 
-    lda #STA_0C_EYES_BROW_2L
-    sta STA_0C_BROW_L_SP
-    lda #STA_0C_EYES_BROW_2R
-    sta STA_0C_BROW_R_SP
+    lda #SC_EYES_BROW_2L
+    sta SC_BROW_L_SP
+    lda #SC_EYES_BROW_2R
+    sta SC_BROW_R_SP
     jmp set_exp_mouth
 
     
@@ -939,30 +1070,30 @@ set_expression:
 
     cmp #$09 // eyes $09
     bne !set_expression_next+
-    lda #STA_0C_EYES_BLINK  
-    sta STA_0C_EYE_L_SP
-    lda #STA_0C_EYES_BLINK  
-    sta STA_0C_EYE_R_SP
+    lda #SC_EYES_BLINK  
+    sta SC_EYE_L_SP
+    lda #SC_EYES_BLINK  
+    sta SC_EYE_R_SP
 
-    lda #STA_0C_EYES_BROW_2L
-    sta STA_0C_BROW_L_SP
-    lda #STA_0C_EYES_BROW_2R
-    sta STA_0C_BROW_R_SP
+    lda #SC_EYES_BROW_2L
+    sta SC_BROW_L_SP
+    lda #SC_EYES_BROW_2R
+    sta SC_BROW_R_SP
     jmp set_exp_mouth
     
 !set_expression_next:
 
     cmp #$0a // eyes $0a
     bne !set_expression_next+
-    lda #STA_0C_EYES_SOLID_LIL
-    sta STA_0C_EYE_L_SP
-    lda #STA_0C_EYES_SOLID_LIL
-    sta STA_0C_EYE_R_SP
+    lda #SC_EYES_SOLID_LIL
+    sta SC_EYE_L_SP
+    lda #SC_EYES_SOLID_LIL
+    sta SC_EYE_R_SP
 
-    lda #STA_0C_EYES_BROW_2L
-    sta STA_0C_BROW_L_SP
-    lda #STA_0C_EYES_BROW_2R
-    sta STA_0C_BROW_R_SP
+    lda #SC_EYES_BROW_2L
+    sta SC_BROW_L_SP
+    lda #SC_EYES_BROW_2R
+    sta SC_BROW_R_SP
     jmp set_exp_mouth
 !set_expression_next:
 
@@ -1062,4 +1193,6 @@ draw_power_pack_face:
 
 modedata:
 .byte 0,0,0,0,0,0,0,0
+
+
 
