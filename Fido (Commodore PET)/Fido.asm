@@ -8,6 +8,10 @@
 // 
 // History:
 //
+// August 1, 2024
+//      - Added HAL 2001 Mode
+//      - Also created Commodore PET Programming repo
+//
 // October 22, 2021:
 //      - Added Power Pack Face mode
 //
