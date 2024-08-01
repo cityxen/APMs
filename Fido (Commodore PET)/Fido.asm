@@ -16,15 +16,12 @@
 //
 //////////////////////////////////////////////////////////////////////////////////////
 
-.const SCREEN_RAM       = $8000
+#import "../../Commodore_PET_Programming/include/Constants.asm"
+#import "../../Commodore_PET_Programming/include/DrawPetMateScreenPET.asm"
+
 .const eye_left         = SCREEN_RAM+135+160
 .const eye_right        = SCREEN_RAM+145+160
 .const mouth            = SCREEN_RAM+536
-.const COLOR_RAM        = $2000
-.const BACKGROUND_COLOR = $7ffe
-.const BORDER_COLOR     = $7fff
-
-#import "DrawPetMateScreen.asm"
 
 //////////////////////////////////////////////////////////////////////////////////////
 // File stuff
@@ -35,9 +32,9 @@
 //////////////////////////////////////////////////////////////////////////////////////
 .segment Main [allowOverlap]
 
-*=$0401 "BASIC"
- :BasicUpstart($0415)
-*=$0415
+*=BASIC_START "BASIC"
+ :BasicUpstart(BASIC_START+$20)
+*=BASIC_START+$20
 
 //////////////////////////////////////////////////
 // START (DO SOME INITIALIZING HERE)
@@ -52,9 +49,20 @@ start:
     
     jmp mainloop
 
+hal_mode:
+.byte 0
+hal_mode_shift:
+.byte 0
+hal_mode_shift_dir:
+.byte 0
+.const hal_mode_max_shift = $03
+.const hal_mode_max_shift_2 = $06
+
 //////////////////////////////////////////////////
 // MAINLOOP
 mainloop:
+
+    jsr do_hal_mode
 
 ////////////////
     jsr $ffe4 // Check keyboard
@@ -117,7 +125,7 @@ mainloop:
 !keycheck:
     cmp #$32 // 2
     bne !keycheck+
-    lda #$3dO
+    lda #$3F
     jsr draw_eyes_2
     jmp mainloop
 
@@ -164,15 +172,20 @@ mainloop:
     ldx #$00
     jsr set_expression
     jmp mainloop
+    */
+
 !keycheck:
     cmp #$39 // 9
     bne !keycheck+
-    lda #$0E
-    ldx #$00
-    jsr set_expression
+    
     jmp mainloop
 
-*/
+
+!keycheck:
+    cmp #$30 // 0
+    bne !keycheck+
+    jsr go_hal_mode
+    jmp mainloop
 
 !keycheck: // P
     cmp #$50
@@ -245,6 +258,8 @@ mainloop:
     jmp mainloop
 
 !keycheck: // end_keyboard_checks
+
+
 
     jmp mainloop
 // END MAINLOOP
@@ -339,8 +354,87 @@ draw_power_pack_face:
     DrawPetMateScreen(power_pack_face)
     rts
 
+go_hal_mode:
+    lda #$01
+    sta hal_mode
+    DrawPetMateScreen(hal2001)
+    rts
+
+
+hal_shift_chars_up:
+    lda #<SCREEN_RAM
+    sta SCREEN_PTR_LO
+    lda #>SCREEN_RAM
+    sta SCREEN_PTR_HI
+    ldy #$00
+hscu_loop: 
+    lda (SCREEN_PTR),y
+    cmp #$20
+    beq !+
+    adc #$01
+    sta (SCREEN_PTR),y
+!:
+    inc SCREEN_PTR_LO
+    bne !+
+    inc SCREEN_PTR_HI
+!:
+    lda SCREEN_PTR_HI
+    cmp #$84
+    bne hscu_loop
+    rts    
+
+hal_shift_chars_down:
+    lda #<SCREEN_RAM
+    sta SCREEN_PTR_LO
+    lda #>SCREEN_RAM
+    sta SCREEN_PTR_HI
+    ldy #$00
+hscd_loop: 
+    lda (SCREEN_PTR),y
+    cmp #$20
+    beq !+
+    sbc #$01
+    sta (SCREEN_PTR),y
+!:
+    inc SCREEN_PTR_LO
+    bne !+
+    inc SCREEN_PTR_HI
+!:
+    lda SCREEN_PTR_HI
+    cmp #$84
+    bne hscd_loop
+    rts
+
+do_hal_mode:
+    lda hal_mode
+    beq dhmx
+    inc hal_mode_shift_dir
+    lda hal_mode_shift_dir
+    and #$01
+    bne !+
+    rts
+!:
+
+    lda hal_mode_shift
+    cmp #hal_mode_max_shift
+    bcs !+
+    inc hal_mode_shift
+    jsr hal_shift_chars_up
+    jmp dhmx
+!:
+    jsr hal_shift_chars_down
+    inc hal_mode_shift
+    lda hal_mode_shift
+    cmp #hal_mode_max_shift_2
+    beq dhmx
+    lda #$00
+    sta hal_mode
+    sta hal_mode_shift
+    sta hal_mode_shift_dir
+dhmx:
+    rts
+
 #import "mouthdata.asm"
+#import "petmate_screens/f1d0-hal-2001.asm"
+#import "petmate_screens/f1d0-pp-face.asm"
 
-
-
-#import "Fido_Power_Pack_Face.asm"

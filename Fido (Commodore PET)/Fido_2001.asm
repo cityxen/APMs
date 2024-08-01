@@ -1,15 +1,8 @@
-.const SCREEN_RAM        = 32768
-.const COLOR_RAM         = $2000
-.const BACKGROUND_COLOR  = $7ffe
-.const BORDER_COLOR      = $7fff
+#import "../../Commodore_PET_Programming/include/Constants.asm"
+
 .const FACE_DATA_PTR     = $54
 .const FACE_DATA_PTR_LO  = $54
 .const FACE_DATA_PTR_HI  = $55
-.const SCREEN_PTR        = $56
-.const SCREEN_PTR_LO     = $56
-.const SCREEN_PTR_HI     = $57
-
-
 
 *=$0401 "BASIC"
  :BasicUpstart($0415)
